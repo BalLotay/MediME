@@ -22,15 +22,18 @@ public class Person {
 		this.firstName = firstName;
 		
 	}
+
 	
 	public String getFirstName(){
 		return this.firstName;
 	}
 
 
+
     public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	
 	public String getLastName(){
 		return this.lastName;
@@ -41,31 +44,32 @@ public class Person {
     public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;	
 	}
-	
+
 
 	public String getEmailAddress(){
 		return this.emailAddress;
 	} 
-    
+
 
     public void setAccountPassword(String accountPassword) {
 		this.accountPassword = accountPassword;
 	}
-	
+
 
 	public String getAccountPassword(){
 		return this.accountPassword;
 	} 
-    
+
+
     public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
 
 	public String getPhoneNumber(){
 		return this.phoneNumber;
 	}
-
+    
 
     public void setAddress(String address){
         this.address = address;
@@ -79,6 +83,7 @@ public class Person {
     public void setHealthCardNumber(String healthCardNumber){
         this.healthCardNumber = healthCardNumber;
     }
+    
 
     public String setHealthCardNumber(){
         return this.healthCardNumber;
