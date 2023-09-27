@@ -1,5 +1,5 @@
 public class Person { // Class created
-    public Person(){
-        
+    public Person(String name){
+
     }
 }
