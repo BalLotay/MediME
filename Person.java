@@ -1,4 +1,4 @@
-public class Person { 
+public class Person {
 
     private String firstName;
     private String lastName;
@@ -35,20 +35,24 @@ public class Person {
 	public String getLastName(){
 		return this.lastName;
 
-
 	} 
+
+
     public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;	
 	}
 	
+
 	public String getEmailAddress(){
 		return this.emailAddress;
 	} 
     
+
     public void setAccountPassword(String accountPassword) {
 		this.accountPassword = accountPassword;
 	}
 	
+
 	public String getAccountPassword(){
 		return this.accountPassword;
 	} 
@@ -57,13 +61,16 @@ public class Person {
 		this.phoneNumber = phoneNumber;
 	}
 	
+
 	public String getPhoneNumber(){
 		return this.phoneNumber;
 	}
 
+
     public void setAddress(String address){
         this.address = address;
     }
+
 
     public String getAddress(){
         return this.address;
@@ -75,6 +82,7 @@ public class Person {
 
     public String setHealthCardNumber(){
         return this.healthCardNumber;
+
     }
 
 
