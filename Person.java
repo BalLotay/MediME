@@ -6,16 +6,14 @@ public class Person {
     private String accountPassword;
     private String phoneNumber;
     private String address;
-    private int healthCardNumber;
 
-    public Person(String firstName, String lastName, String emailAddress, String accountPassword, String phoneNumber, String address, int healthCardNumber){
+    public Person(String firstName, String lastName, String emailAddress, String accountPassword, String phoneNumber, String address){
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.accountPassword = accountPassword;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.healthCardNumber = healthCardNumber;
     }
 
     public void setFirstName(String firstName) {
@@ -79,16 +77,5 @@ public class Person {
     public String getAddress(){
         return this.address;
     }
-
-    public void setHealthCardNumber(String healthCardNumber){
-        this.healthCardNumber = healthCardNumber;
-    }
-    
-
-    public String setHealthCardNumber(){
-        return this.healthCardNumber;
-
-    }
-
 
 }
