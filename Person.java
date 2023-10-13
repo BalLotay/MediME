@@ -1,5 +1,5 @@
 public class Person {
-
+//base framework for the Doctor and Patient classes
     private String firstName;
     private String lastName;
     private String emailAddress;
@@ -15,7 +15,6 @@ public class Person {
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
-
     public void setFirstName(String firstName) {
 		this.firstName = firstName;
 		
@@ -26,13 +25,10 @@ public class Person {
 		return this.firstName;
 	}
 
-
-
     public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	
 	public String getLastName(){
 		return this.lastName;
 
