@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RegistrationFormPatient"
+rootProject.name = "RegistrationFormDoctor"
 include(":app")
  
