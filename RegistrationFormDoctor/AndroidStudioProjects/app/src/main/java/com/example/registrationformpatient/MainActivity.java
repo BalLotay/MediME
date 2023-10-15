@@ -1,4 +1,4 @@
-package com.example.registrationformpatient;
+package com.example.registrationformdoctor;
 
 import android.os.Bundle;
 import android.text.TextUtils;
