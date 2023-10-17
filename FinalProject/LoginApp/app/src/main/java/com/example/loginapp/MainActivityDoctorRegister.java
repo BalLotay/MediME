@@ -1,5 +1,6 @@
 package com.example.loginapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,7 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivityDoctorRegister extends AppCompatActivity {
 
@@ -30,7 +32,6 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         setContentView(R.layout.activity_main_doctor_register);
 
 
-
         firstName = findViewById(R.id.firstname);
         lastName = findViewById(R.id.lastname);
         email = findViewById(R.id.username);
@@ -41,10 +42,34 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         specialties = findViewById(R.id.specialties);
         register = findViewById(R.id.register);
 
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 checkDataEntered(); //once the user clicks register, check to see if the data is valid
+
+                String firstNameStr = firstName.getText().toString();
+                String lastNameStr = lastName.getText().toString();
+                String emailStr = email.getText().toString();
+                String passwordStr = password.getText().toString();
+                String addressStr = address.getText().toString();
+                String phoneNumStr = phoneNum.getText().toString();
+                int healthNumInt = Integer.parseInt(healthNum.getText().toString());
+                String[] specialtiesArray = specialties.getText().toString().split(",");
+
+                Doctor doctor = new Doctor(firstNameStr, lastNameStr, emailStr, passwordStr, addressStr, phoneNumStr, healthNumInt, specialtiesArray);
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference();
+                myRef.child("Doctors").child(doctor.getEmailAddress()).setValue(doctor);
+
+                Toast t = Toast.makeText(MainActivityDoctorRegister.this, "REGISTRATION SUCCESSFUL!", Toast.LENGTH_SHORT);
+                t.show();
+
+                Intent intent = new Intent(MainActivityDoctorRegister.this, MainActivityHome.class);
+                startActivity(intent);
+                finish(); // Close the current activity to prevent going back to it using the back button
             }
         });
     }
