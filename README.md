@@ -24,6 +24,12 @@ Additionally, do take note of the following:
   + Password: pass
 - Be sure to sync the project with `build.gradle.kts` Gradle file under the FinalProject/LoginApp directory **only**.
 
+### Database
+
+The app is able to store data on a Firebase database, as seen in the screenshot below:
+
+
+![Screenshot of the database in Firebase](Images/Firebase.png)
 
 
 ### Note
