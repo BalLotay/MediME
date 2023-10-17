@@ -23,9 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivityLogin extends AppCompatActivity {
 
-    private final static int MAX_SIZE = 100;
-    protected static ArrayList<Doctor> doctors = new ArrayList<>();
-    protected static ArrayList<Patient> patients = new ArrayList<>();
     boolean isCorrect;
     String personType = "Admin";
 
@@ -90,8 +87,6 @@ public class MainActivityLogin extends AppCompatActivity {
                                     personType = "Doctor";
                                     break;
                                 }
-                                Toast.makeText(MainActivityLogin.this, username, Toast.LENGTH_LONG).show();
-                                Toast.makeText(MainActivityLogin.this, password, Toast.LENGTH_LONG).show();
                             }
 
                         }
