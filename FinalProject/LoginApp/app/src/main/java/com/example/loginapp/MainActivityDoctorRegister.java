@@ -57,8 +57,9 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
                 String phoneNumStr = phoneNum.getText().toString();
                 int healthNumInt = Integer.parseInt(healthNum.getText().toString());
                 String[] specialtiesArray = specialties.getText().toString().split(",");
+                String status = "pending";
 
-                Doctor doctor = new Doctor(firstNameStr, lastNameStr, emailStr, passwordStr, addressStr, phoneNumStr, healthNumInt, specialtiesArray);
+                Doctor doctor = new Doctor(firstNameStr, lastNameStr, emailStr, passwordStr, addressStr, phoneNumStr, healthNumInt, status, specialtiesArray);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference();

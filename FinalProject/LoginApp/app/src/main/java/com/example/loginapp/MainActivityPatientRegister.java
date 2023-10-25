@@ -53,8 +53,9 @@ public class MainActivityPatientRegister extends AppCompatActivity {
                 String addressStr = address.getText().toString();
                 String phoneNumStr = phoneNum.getText().toString();
                 int healthNumInt = Integer.parseInt(healthNum.getText().toString());
+                String status = "pending";
 
-                Patient patient = new Patient(firstNameStr, lastNameStr, emailStr, passwordStr, phoneNumStr, addressStr, healthNumInt);
+                Patient patient = new Patient(firstNameStr, lastNameStr, emailStr, passwordStr, phoneNumStr, addressStr, healthNumInt, status);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference();
