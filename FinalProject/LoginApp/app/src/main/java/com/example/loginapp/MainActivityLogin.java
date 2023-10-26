@@ -58,11 +58,21 @@ public class MainActivityLogin extends AppCompatActivity {
                             for (DataSnapshot patient : snapshot.getChildren()) {
                                 String username = patient.getKey().toString();
                                 String password = patient.child("accountPassword").getValue().toString();
+                                String status = patient.child("status").getValue().toString();
 
-                                if (user.equals(username) && pass.equals(password)) {
+
+                                if (user.equals(username) && pass.equals(password) && status.equals("approved")) {
                                    isCorrect = true;
                                    personType = "Patient";
                                    break;
+                                }
+                                else if (user.equals(username) && pass.equals(password) && status.equals("pending"))
+                                {
+                                    Toast.makeText(getApplicationContext(),"Approval pending, please try again later.",Toast.LENGTH_SHORT).show();
+                                }
+                                else if (user.equals(username) && pass.equals(password) && status.equals("rejected"))
+                                {
+                                    Toast.makeText(getApplicationContext(),"Rejected, contact (111)-111-1111 for inquires.",Toast.LENGTH_LONG).show();
                                 }
                             }
 
@@ -81,11 +91,20 @@ public class MainActivityLogin extends AppCompatActivity {
                             for (DataSnapshot doctor : snapshot.getChildren()) {
                                 String username = doctor.getKey().toString();
                                 String password = doctor.child("accountPassword").getValue().toString();
+                                String status = doctor.child("status").getValue().toString();
 
-                                if (user.equals(username) && pass.equals(password)) {
+                                if (user.equals(username) && pass.equals(password) && status.equals("approved")) {
                                     isCorrect = true;
                                     personType = "Doctor";
                                     break;
+                                }
+                                else if (user.equals(username) && pass.equals(password) && status.equals("pending"))
+                                {
+                                    Toast.makeText(getApplicationContext(),"Approval pending, please try again later.",Toast.LENGTH_SHORT).show();
+                                }
+                                else if (user.equals(username) && pass.equals(password) && status.equals("rejected"))
+                                {
+                                    Toast.makeText(getApplicationContext(),"Rejected, contact (111)-111-1111 for inquires.",Toast.LENGTH_LONG).show();
                                 }
                             }
 
