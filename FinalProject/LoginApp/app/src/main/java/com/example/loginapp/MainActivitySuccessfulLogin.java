@@ -16,10 +16,23 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         setContentView(R.layout.activity_main_successful_login);
 
         MaterialButton logOffButton = findViewById(R.id.logOffButton);
+        MaterialButton viewApplicantsButton = findViewById(R.id.viewApplicantsButton);
         TextView role = findViewById(R.id.role);
 
         String personType = getIntent().getStringExtra("person type");
         role.setText(personType);
+
+        if (personType.equals("Admin")) {
+            viewApplicantsButton.setVisibility(View.VISIBLE);
+        }
+
+        viewApplicantsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityViewApplicants.class);
+                startActivity(intent);
+            }
+        });
 
 
         logOffButton.setOnClickListener(new View.OnClickListener() {
