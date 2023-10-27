@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="ApplicantLinearLayout" parent="TextAppearance.AppCompat">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/rounded_editext</item>
+    </style>
+    <style name="ApplicantNameView" parent="TextAppearance.AppCompat">
+        <item name="android:width">190dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingLeft">20dp</item>
+    </style>
 </resources>

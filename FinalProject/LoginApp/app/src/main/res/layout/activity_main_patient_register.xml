@@ -7,20 +7,21 @@
     android:background="@color/black"
     tools:context=".MainActivityPatientRegister">
 
+
     <TextView
         android:id="@+id/patientRegisterTextView"
         android:layout_width="327dp"
         android:layout_height="72dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Patient Register"
         android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/firstname"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/firstname"/>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/firstname"
