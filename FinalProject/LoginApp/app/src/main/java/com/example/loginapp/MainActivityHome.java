@@ -22,8 +22,6 @@ public class MainActivityHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_home);
 
-
-
         buttonLogin = (Button) findViewById(R.id.LogIn);
         buttonPatientRegister = (Button) findViewById(R.id.patientRegister);
         buttonDoctorRegister = (Button) findViewById(R.id.doctorRegister);
