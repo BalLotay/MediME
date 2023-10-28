@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Doctor extends Person {
 
     private String[] specialties;
-    private int employeeNumber
+    private int employeeNumber;
 
     private String status;
 
