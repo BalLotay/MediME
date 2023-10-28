@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityViewApplicants"
+    tools:context=".MainActivityViewRejectedApplicants"
     android:background="@color/black">
 
     <TextView
         android:id="@+id/applicantsTextView"
-        android:layout_width="227dp"
+        android:layout_width="392dp"
         android:layout_height="72dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="4dp"
         android:layout_marginTop="48dp"
         android:gravity="center"
-        android:text="Applicants"
+        android:text="Rejected Applicants"
         android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -42,12 +42,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="90dp">
+            tools:layout_editor_absoluteY="80dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 android:text="Click on name for more info"
                 android:textColor="@color/white"
                 android:textSize="20sp">

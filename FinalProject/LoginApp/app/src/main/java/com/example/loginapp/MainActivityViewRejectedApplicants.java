@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,26 +18,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivityViewApplicants extends AppCompatActivity {
+public class MainActivityViewRejectedApplicants extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_view_applicants);
+        setContentView(R.layout.activity_main_view_rejected_applicants);
 
-        LinearLayout.LayoutParams params =
+        LinearLayout.LayoutParams paramsTextView =
                 new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                        1.0f);
 
-        params.setMargins(10, 0, 0, 0);
-
-        LinearLayout.LayoutParams params1 =
+        LinearLayout.LayoutParams paramsLinearLayout =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         180);
 
-        params1.setMargins(0, 10, 0, 0);
+        paramsLinearLayout.setMargins(0, 10, 0, 0);
 
         LinearLayout layoutScrollView = findViewById(R.id.layoutInScrollView);
 
@@ -55,19 +55,16 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                         String status = person.child("status").getValue().toString();
                         String firstAndLastName = firstName + " " + lastName;
 
-                        if (status.equals("pending")) {
-                            LinearLayout layout = new LinearLayout(MainActivityViewApplicants.this,null,0, R.style.ApplicantLinearLayout);
-                            layout.setLayoutParams(params1);
-                            TextView textView = new TextView(MainActivityViewApplicants.this,null,0,R.style.ApplicantNameView);
-                            MaterialButton acceptButton = new MaterialButton(MainActivityViewApplicants.this, null);
-                            MaterialButton rejectButton = new MaterialButton(MainActivityViewApplicants.this, null);
-                            acceptButton.setText("Accept");
+                        if (status.equals("rejected")) {
+                            LinearLayout layout = new LinearLayout(MainActivityViewRejectedApplicants.this,null,0, R.style.ApplicantLinearLayout);
+                            layout.setLayoutParams(paramsLinearLayout);
+                            TextView textView = new TextView(MainActivityViewRejectedApplicants.this,null,0,R.style.ApplicantNameView);
+                            MaterialButton rejectButton = new MaterialButton(MainActivityViewRejectedApplicants.this, null);
                             rejectButton.setText("Reject");
-                            rejectButton.setLayoutParams(params);
-
+                            textView.setLayoutParams(paramsTextView);
+                            layout.setPadding(5,5,50,5);
                             textView.setText(firstAndLastName);
                             layout.addView(textView);
-                            layout.addView(acceptButton);
                             layout.addView(rejectButton);
                             layoutScrollView.addView(layout);
                             textView.setClickable(true);
@@ -75,7 +72,7 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Intent intent = new Intent(MainActivityViewApplicants.this, MainActivitySeeUserInfo.class);
+                                    Intent intent = new Intent(MainActivityViewRejectedApplicants.this, MainActivitySeeUserInfo.class);
                                     String phoneStr = person.child("phoneNumber").getValue().toString();
                                     String addressStr = person.child("address").getValue().toString();
                                     String personTypeStr = person.child("userType").getValue().toString();
@@ -94,18 +91,11 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                                 }
                             });
 
-                            acceptButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    layoutScrollView.removeView(layout);
-                                    userRef.child(firstName).child("status").setValue("approved");
-                                }
-                            });
                             rejectButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     layoutScrollView.removeView(layout);
-                                    userRef.child(firstName).child("status").setValue("rejected");
+                                    userRef.child(firstName).child("status").setValue("rejectedAgain");
                                 }
                             });
 

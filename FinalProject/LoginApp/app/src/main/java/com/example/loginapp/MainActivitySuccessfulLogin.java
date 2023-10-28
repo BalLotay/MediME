@@ -17,6 +17,7 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
 
         MaterialButton logOffButton = findViewById(R.id.logOffButton);
         MaterialButton viewApplicantsButton = findViewById(R.id.viewApplicantsButton);
+        MaterialButton viewRejectedApplicantsButton = findViewById(R.id.viewRejectedApplicantsButton);
         TextView role = findViewById(R.id.role);
 
         String personType = getIntent().getStringExtra("person type");
@@ -24,12 +25,21 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
 
         if (personType.equals("Admin")) {
             viewApplicantsButton.setVisibility(View.VISIBLE);
+            viewRejectedApplicantsButton.setVisibility(View.VISIBLE);
         }
 
         viewApplicantsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityViewApplicants.class);
+                startActivity(intent);
+            }
+        });
+
+        viewRejectedApplicantsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityViewRejectedApplicants.class);
                 startActivity(intent);
             }
         });
