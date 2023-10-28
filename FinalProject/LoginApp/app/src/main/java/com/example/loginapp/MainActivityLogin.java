@@ -88,15 +88,15 @@ public class MainActivityLogin extends AppCompatActivity {
         }
         if (isApproved) {
             userRef.removeEventListener(event);
-            Toast.makeText(MainActivityLogin.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivityLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivityLogin.this, MainActivitySuccessfulLogin.class);
             intent.putExtra("person type", personType);
             startActivity(intent);
             finish();
         } else if (isPending) {
-            Toast.makeText(MainActivityLogin.this, "REGISTRATION APPROVAL PENDING.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivityLogin.this, "Registration approval pending", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(MainActivityLogin.this,"LOGIN FAILED", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivityLogin.this,"Login failed as registration was denied. Contact admin at (343) 999-999 ", Toast.LENGTH_SHORT).show();
         }
         userRef.removeEventListener(event);
     }
