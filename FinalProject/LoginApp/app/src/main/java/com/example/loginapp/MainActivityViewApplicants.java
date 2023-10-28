@@ -3,6 +3,7 @@ package com.example.loginapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -74,7 +75,24 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+                                    Intent intent = new Intent(MainActivityViewApplicants.this, MainActivitySeeUserInfo.class);
+                                    String phoneStr = person.child("phoneNumber").getValue().toString();
+                                    String addressStr = person.child("address").getValue().toString();
+                                    String personTypeStr = person.child("userType").getValue().toString();
+                                    String[] personDetails = {firstName, lastName, username, phoneStr, addressStr, null, null};
+                                    if (personTypeStr.equals("Doctor")) {
+                                        Toast.makeText(MainActivityViewApplicants.this,"Doc works",Toast.LENGTH_SHORT).show();
+                                        String specialties = person.child("specialties").getValue().toString();
+                                        String employeeNumStr = person.child("employeeNumber").getValue().toString();
+                                        personDetails[5] = employeeNumStr;
+                                        personDetails[6] = specialties;
+                                    } else {
+                                        String healthNumStr = person.child("healthCardNumber").getValue().toString();
+                                        personDetails[5] = healthNumStr;
+                                    }
+                                    intent.putExtra("person details", personDetails);
                                     Toast.makeText(MainActivityViewApplicants.this,"Works",Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
                                 }
                             });
 

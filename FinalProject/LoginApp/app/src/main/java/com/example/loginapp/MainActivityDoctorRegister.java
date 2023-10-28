@@ -21,7 +21,7 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
     private EditText password;
     private EditText address;
     private  EditText phoneNum;
-    private EditText healthNum;
+    private EditText employeeNum;
     private EditText specialties;
     private Button register;
 
@@ -37,7 +37,7 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         password = findViewById(R.id.password);
         address = findViewById(R.id.address);
         phoneNum = findViewById(R.id.phonenum);
-        healthNum = findViewById(R.id.healthnum);
+        employeeNum = findViewById(R.id.employeeNum);
         specialties = findViewById(R.id.specialties);
         register = findViewById(R.id.register);
 
@@ -61,11 +61,11 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         String passwordStr = password.getText().toString();
         String addressStr = address.getText().toString();
         String phoneNumStr = phoneNum.getText().toString();
-        int healthNumInt = Integer.parseInt(healthNum.getText().toString());
+        int employeeNumInt = Integer.parseInt(employeeNum.getText().toString());
         String[] specialtiesArray = specialties.getText().toString().split(",");
         String status = "pending";
 
-        Doctor doctor = new Doctor(firstNameStr, lastNameStr, emailStr, passwordStr, addressStr, phoneNumStr, healthNumInt, status, specialtiesArray);
+        Doctor doctor = new Doctor(firstNameStr, lastNameStr, emailStr, passwordStr, addressStr, phoneNumStr, employeeNumInt, status, specialtiesArray);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
@@ -109,7 +109,7 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
             Toast t = Toast.makeText(this, "Empty field", Toast.LENGTH_SHORT);
             t.show();
             return false;
-        } else if (isEmpty(healthNum)) {
+        } else if (isEmpty(employeeNum)) {
             Toast t = Toast.makeText(this, "Empty field", Toast.LENGTH_SHORT);
             t.show();
             return false;
@@ -117,7 +117,7 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
             Toast t = Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT);
             t.show();
             return false;
-        } else if (!isNumerical(healthNum)) {
+        } else if (!isNumerical(employeeNum)) {
             Toast t = Toast.makeText(this, "Invalid Health Card Number", Toast.LENGTH_SHORT);
             t.show();
             return false;
