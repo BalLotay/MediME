@@ -57,13 +57,13 @@ public class MainActivityViewRejectedApplicants extends AppCompatActivity {
                             LinearLayout layout = new LinearLayout(MainActivityViewRejectedApplicants.this,null,0, R.style.ApplicantLinearLayout);
                             layout.setLayoutParams(paramsLinearLayout);
                             TextView textView = new TextView(MainActivityViewRejectedApplicants.this,null,0,R.style.ApplicantNameView);
-                            MaterialButton rejectButton = new MaterialButton(MainActivityViewRejectedApplicants.this, null);
-                            rejectButton.setText("Reject");
+                            MaterialButton acceptButton = new MaterialButton(MainActivityViewRejectedApplicants.this, null);
+                            acceptButton.setText("Accept");
                             textView.setLayoutParams(paramsTextView);
                             layout.setPadding(5,5,50,5);
                             textView.setText(firstAndLastName);
                             layout.addView(textView);
-                            layout.addView(rejectButton);
+                            layout.addView(acceptButton);
                             layoutScrollView.addView(layout);
                             textView.setClickable(true);
 
@@ -89,11 +89,11 @@ public class MainActivityViewRejectedApplicants extends AppCompatActivity {
                                 }
                             });
 
-                            rejectButton.setOnClickListener(new View.OnClickListener() {
+                            acceptButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     layoutScrollView.removeView(layout);
-                                    userRef.child(firstName).child("status").setValue("rejectedAgain");
+                                    userRef.child(firstName).child("status").setValue("approved");
                                 }
                             });
 
