@@ -39,6 +39,13 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         viewRejectedApplicantsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivitySuccessfulLogin.this)
+                    .setContentTitle("Notification")
+                    .setContentText("Request has been accepted");
+
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                notificationManager.notify(0, builder.build());
+                
                 Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityViewRejectedApplicants.class);
                 startActivity(intent);
             }
