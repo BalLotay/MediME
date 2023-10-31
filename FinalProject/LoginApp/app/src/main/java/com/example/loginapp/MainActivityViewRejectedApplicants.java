@@ -94,6 +94,8 @@ public class MainActivityViewRejectedApplicants extends AppCompatActivity {
                                 public void onClick(View view) {
                                     layoutScrollView.removeView(layout);
                                     userRef.child(firstName).child("status").setValue("approved");
+//                                    For email functionality (only works if sender's email and password are provided in EmailSender.java)
+//                                    EmailSender.sendAcceptanceEmail(username);
                                 }
                             });
 
