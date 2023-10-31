@@ -18,9 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivityViewRejectedApplicants extends AppCompatActivity {
 
-    private void sendRejectionNotification(String recipientEmail) {
-        EmailSender.sendRejectionEmail(recipientEmail);
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,16 +66,6 @@ public class MainActivityViewRejectedApplicants extends AppCompatActivity {
                             layout.addView(acceptButton);
                             layoutScrollView.addView(layout);
                             textView.setClickable(true);
-
-                             String applicantEmail= person.child("emailAddress").getValue.toString();
-                            sendRejectionNotification(applicantEmail);
-                            
-                            NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivityViewRejectedApplicants.this)
-                                    .setContentTitle("Notification")
-                                    .setContentText("Request has been rejected");
-
-                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                            notificationManager.notify(0, builder.build());
 
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
