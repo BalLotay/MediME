@@ -140,14 +140,14 @@
         android:id="@+id/specialties"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="18dp"
         android:layout_marginTop="10dp"
-        android:ems="15"
-        android:textColor="@color/white"
         android:background="@drawable/rounded_edittext_background"
-        android:textColorHint="@color/white"
-        android:inputType="text"
+        android:ems="15"
         android:hint="Specialties"
+        android:inputType="text"
+        android:padding="18dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/employeeNum" />
@@ -164,8 +164,22 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/specialties"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.666" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/autoAcceptSwitch"
+        android:layout_width="147dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="1dp"
+        android:text="AutoAccept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.268"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specialties"
+        app:layout_constraintVertical_bias="0.666" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

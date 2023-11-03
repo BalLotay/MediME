@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,6 +25,8 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
     private EditText employeeNum;
     private EditText specialties;
     private Button register;
+
+    private SwitchMaterial autoAcceptSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         employeeNum = findViewById(R.id.employeeNum);
         specialties = findViewById(R.id.specialties);
         register = findViewById(R.id.register);
+        autoAcceptSwitch = findViewById(R.id.autoAcceptSwitch);
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +68,12 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         int employeeNumInt = Integer.parseInt(employeeNum.getText().toString());
         String[] specialtiesArray = specialties.getText().toString().split(",");
         String status = "pending";
+        boolean autoAcceptStatus = autoAcceptSwitch.isChecked();
+
 
         Doctor doctor = new Doctor(firstNameStr, lastNameStr, emailStr, passwordStr, addressStr, phoneNumStr, employeeNumInt, status, specialtiesArray);
+
+        doctor.setAutoAcceptStatus(autoAcceptStatus);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
