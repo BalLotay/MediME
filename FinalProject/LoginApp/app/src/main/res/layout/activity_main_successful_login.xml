@@ -56,6 +56,54 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="363dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="130dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/viewPastAppointmentsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/design_default_color_primary_dark"
+            android:text="VIEW PAST APPOINTMENTS"
+
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="363dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="180dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/viewUpcomingAppointmentsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/design_default_color_primary_dark"
+            android:text="VIEW UPCOMING APPOINTMENTS"
+
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="363dp"
         android:layout_height="80dp"
