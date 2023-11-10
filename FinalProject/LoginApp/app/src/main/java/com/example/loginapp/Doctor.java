@@ -1,6 +1,7 @@
 package com.example.loginapp;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Doctor extends Person {
 
@@ -9,28 +10,47 @@ public class Doctor extends Person {
 
     private String status;
     private boolean autoAcceptStatus;
-    private ArrayList<Appointment> appointments;
+    private List<Appointment> appointments;
+
+    private List<Shift> shifts;
+
+
 
     public Doctor(String firstName, String lastName, String emailAddress, String accountPassword, String phoneNumber, String address, int employeeNumber, String status, String ...specialties){
         super(firstName, lastName, emailAddress, accountPassword, phoneNumber, address);
         this.employeeNumber = employeeNumber;
         this.specialties = specialties;
         this.status = status;
-        ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+        appointments = new ArrayList<Appointment>();
+        shifts = new ArrayList<Shift>();
+        Shift nullShift = new Shift("null","null","null",firstName);
+        shifts.add(nullShift);
     }
 
-    public ArrayList<Appointment> getAppointments(){
+    public List<Appointment> getAppointments(){
         return appointments;
     }
 
-    public void setAppointments(ArrayList<Appointment> list){
+    public void setAppointments(List<Appointment> list){
         appointments = list;
+    }
+
+    public List<Shift> getShifts() {
+        return shifts;
+    }
+
+    public void setShifts(List<Shift> shifts) {
+        this.shifts = shifts;
+    }
+
+    public void addShift(Shift shift){
+        this.shifts.add(shift);
     }
 
     public void addAppointment(Appointment a){
         appointments.add(a);
     }
-    public Appointment getAppointment(i){
+    public Appointment getAppointment(int i){
         return appointments.get(i);
     }
 

@@ -27,7 +27,7 @@ public class Patient extends Person {
     public void addAppointment(Appointment a){
         appointments.add(a);
     }
-    public Appointment getAppointment(i){
+    public Appointment getAppointment(int i){
         return appointments.get(i);
     }
 

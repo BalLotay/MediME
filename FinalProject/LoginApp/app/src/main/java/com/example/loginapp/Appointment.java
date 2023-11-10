@@ -1,3 +1,4 @@
+package com.example.loginapp;
 
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public class Appointment {
 
 	public Appointment(Doctor doctor, Patient patient, Date date, String endTime, String startTime) {
 		status = "pending";
-		if (doctor.autoAcceptStatus == true) {
+		if (doctor.getAutoAcceptStatus() == true) {
 			status = "accepted";
 		}
 		this.patient = patient;
@@ -67,7 +68,7 @@ public class Appointment {
 	}
 
 	public Doctor getDoctor() {
-		return this.patient;
+		return this.doctor;
 	}
 
 	public void setDoctor(Doctor d) {
