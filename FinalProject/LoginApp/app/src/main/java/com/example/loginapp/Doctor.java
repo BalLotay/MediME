@@ -3,12 +3,14 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 public class Doctor extends Person {
     private List<String> specialties;
     private int employeeNumber;
     private String status;
     private boolean autoAcceptStatus;
     private List<Appointment> appointments;
+    private List<Shift> shifts;
 
     public Doctor() {
 
@@ -21,7 +23,8 @@ public class Doctor extends Person {
         this.status = status;
         this.appointments = new ArrayList<>();
 
-        // Dummy appointment to act as placeholder for Realtime Database
+        // Dummy appointment and shift to act as placeholder for Realtime Database
+        shifts.add(new Shift("null","null","null",firstName));
         appointments.add(new Appointment("null", "null", "null", "null", "null"));
     }
 
@@ -31,6 +34,18 @@ public class Doctor extends Person {
 
     public void setAppointments(List<Appointment> list){
         appointments = list;
+    }
+
+    public List<Shift> getShifts() {
+        return shifts;
+    }
+
+    public void setShifts(List<Shift> shifts) {
+        this.shifts = shifts;
+    }
+
+    public void addShift(Shift shift){
+        this.shifts.add(shift);
     }
 
     public void addAppointment(Appointment a){
