@@ -86,16 +86,7 @@ public class MainActivityLogin extends AppCompatActivity {
             isApproved = true;
         }
 
-        if (isApproved && personType.equals("Doctor")){
-            userRef.removeEventListener(event);
-            Toast.makeText(MainActivityLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivityLogin.this, MainActivityCreateShift.class);
-            String userName = user;
-            intent.putExtra("user", userName);
-            startActivity(intent);
-            finish();
-        }
-        else if (isApproved) {
+        if (isApproved) {
             userRef.removeEventListener(event);
             Toast.makeText(MainActivityLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivityLogin.this, MainActivitySuccessfulLogin.class);

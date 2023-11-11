@@ -6,13 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".MainActivityCreateShift">
 
+    <TextView
+        android:id="@+id/addAppointmentTextView"
+        android:layout_width="238dp"
+        android:layout_height="65dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Add Shift"
+        android:textColor="@color/offwhite"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/select"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
         android:id="@+id/select"
         android:layout_width="276dp"
         android:layout_height="68dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="416dp"
         android:text="Select Date"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,9 +38,10 @@
         android:id="@+id/start"
         android:layout_width="276dp"
         android:layout_height="68dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="4dp"
         android:text="Select Start Time"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select" />
 
@@ -30,9 +49,10 @@
         android:id="@+id/end"
         android:layout_width="276dp"
         android:layout_height="68dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="4dp"
         android:text="Select End Time"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start" />
 
