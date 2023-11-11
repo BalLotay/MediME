@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 
 
-import com.example.loginapp.Patient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -90,7 +89,8 @@ public class MainActivityLogin extends AppCompatActivity {
             userRef.removeEventListener(event);
             Toast.makeText(MainActivityLogin.this, "Login Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivityLogin.this, MainActivitySuccessfulLogin.class);
-            intent.putExtra("person type", personType);
+            String[] userDetails = {personType, user};
+            intent.putExtra("person details", userDetails);
             startActivity(intent);
             finish();
         } else if (isPending) {

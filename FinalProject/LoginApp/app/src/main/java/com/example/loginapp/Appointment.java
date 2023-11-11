@@ -1,29 +1,32 @@
-
-import java.util.Date;
+package com.example.loginapp;
+import androidx.annotation.NonNull;
 
 public class Appointment {
-	String status;
-	Date date;
+	String status; // pending, approved or cancelled
+	String date;
 	String startTime; // eg, "13:00"
 	String endTime;
-	Doctor doctor;
-	Patient patient;
+	String doctor; // Doctor's username (firstName)
+	String patient;
 
 	public Appointment() {
 
 	}
-
-	public Appointment(Doctor doctor, Patient patient, Date date, String endTime, String startTime) {
+	public Appointment(String patient, String doctor, String date, String startTime, String endTime) {
 		status = "pending";
-		if (doctor.autoAcceptStatus == true) {
-			status = "accepted";
-		}
 		this.patient = patient;
 		this.doctor = doctor;
 		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;
+	}
 
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public String getPatient() {
+		return patient;
 	}
 
 	public String getStatus() {
@@ -50,28 +53,18 @@ public class Appointment {
 		this.startTime = s;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date d) {
+	public void setDate(String d) {
 		this.date = d;
 	}
 
-	public Patient getPatient() {
-		return this.patient;
+	@NonNull
+	@Override
+	public String toString() {
+		return "status: " + status + ", date: " + date + ", startTime: " + startTime + ", endTime: " + endTime
+				+ ", patient: " + patient + ", doctor: " + doctor;
 	}
-
-	public void setPatient(Patient p) {
-		this.patient = p;
-	}
-
-	public Doctor getDoctor() {
-		return this.patient;
-	}
-
-	public void setDoctor(Doctor d) {
-		this.doctor = d;
-	}
-
 }

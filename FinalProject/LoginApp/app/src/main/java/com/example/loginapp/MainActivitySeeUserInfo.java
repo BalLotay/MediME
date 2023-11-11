@@ -15,6 +15,7 @@ public class MainActivitySeeUserInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_see_user_info);
 
+        TextView userTextView = findViewById(R.id.userTextView);
         TextView firstNameView = findViewById(R.id.firstNameView);
         TextView lastNameView = findViewById(R.id.lastNameView);
         TextView emailView = findViewById(R.id.emailView);
@@ -38,6 +39,10 @@ public class MainActivitySeeUserInfo extends AppCompatActivity {
             specialtiesLayout.setVisibility(View.VISIBLE);
             healthCardNumView.setText(personDetails[5]);
             specialtiesView.setText(personDetails[6]);
+        }
+
+        if(personDetails[7].equals("viewPendingAppointments")) {
+            userTextView.setText("Patient Details");
         }
 
 

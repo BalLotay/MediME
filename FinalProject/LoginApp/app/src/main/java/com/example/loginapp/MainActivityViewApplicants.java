@@ -79,7 +79,7 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                                     String phoneStr = person.child("phoneNumber").getValue().toString();
                                     String addressStr = person.child("address").getValue().toString();
                                     String personTypeStr = person.child("userType").getValue().toString();
-                                    String[] personDetails = {firstName, lastName, username, phoneStr, addressStr, null, null};
+                                    String[] personDetails = {firstName, lastName, username, phoneStr, addressStr, null, null, null};
                                     if (personTypeStr.equals("Doctor")) {
                                         String specialties = person.child("specialties").getValue().toString();
                                         String employeeNumStr = person.child("employeeNumber").getValue().toString();
