@@ -5,17 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.app.DatePickerDialog;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
-
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +18,6 @@ import com.wdullaer.materialdatetimepicker.time.Timepoint;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -70,15 +60,8 @@ public class MainActivityCreateShift extends AppCompatActivity {
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                try {
-                    GenericTypeIndicator<List<Shift>> temp = new GenericTypeIndicator<List<Shift>>(){};
-                    shifts = snapshot.child(username).child("shifts").getValue(temp);
-
-                    //shifts = snapshot.child(username).child("shifts").getValue(.class);
-                }
-                catch(Exception e){
-                    Log.d("Shift object", e.getMessage());
-                }
+                GenericTypeIndicator<List<Shift>> temp = new GenericTypeIndicator<List<Shift>>(){};
+                shifts = snapshot.child(username).child("shifts").getValue(temp);
             }
 
             @Override

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/background"
     tools:context=".MainActivityPatientAddAppointment">
 
 
@@ -14,81 +14,72 @@
         android:layout_height="72dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         android:gravity="center"
         android:text="Add Appointment"
-        android:textColor="@color/white"
+        android:textColor="@color/offwhite"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_edittext_background"
-        android:ems="15"
-        android:hint="Date (mm/dd/yyyy)"
-        android:inputType="text"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+    <Button
+        android:id="@+id/end"
+        android:layout_width="276dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="8dp"
+        android:text="Select End Time"
+        android:textColor="@color/background"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addAppointmentTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/start" />
 
-
-    <EditText
-        android:id="@+id/startTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_edittext_background"
-        android:ems="15"
-        android:hint="From (24-hr clock)"
-        android:inputType="text"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
-
-    <EditText
-        android:id="@+id/endTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_edittext_background"
-        android:ems="15"
-        android:hint="To (24-hr clock)"
-        android:inputType="text"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startTime" />
 
     <EditText
         android:id="@+id/doctor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rounded_edittext_background"
+        android:layout_width="276dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext_color"
         android:ems="15"
+        android:gravity="center"
         android:hint="Doctor"
         android:inputType="text"
         android:padding="20dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endTime" />
+        app:layout_constraintTop_toBottomOf="@+id/end" />
 
+    <Button
+        android:id="@+id/start"
+        android:layout_width="276dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="8dp"
+        android:text="Select Start Time"
+        android:textSize="18dp"
+        android:textColor="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select" />
+
+    <Button
+        android:id="@+id/select"
+        android:layout_width="276dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="280dp"
+        android:text="Select Date"
+        android:textSize="18dp"
+        android:textColor="@color/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addAppointment"
@@ -97,11 +88,13 @@
         android:layout_below="@id/doctor"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/design_default_color_primary_dark"
-        android:text="ADD APPOINTMENT"
-        android:textColor="@color/white"
+        android:layout_marginBottom="70dp"
+        android:text="CONFIRM"
+        android:textColor="@color/background"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

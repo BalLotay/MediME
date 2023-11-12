@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/background"
     tools:context=".MainActivityDoctorRegister">
 
 
@@ -13,9 +13,10 @@
         android:layout_width="327dp"
         android:layout_height="72dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Doctor Register"
-        android:textColor="@color/white"
+        android:textColor="@color/offwhite"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/firstName"
@@ -159,27 +160,28 @@
         android:layout_below="@id/password"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/design_default_color_primary_dark"
         android:text="REGISTER"
-        android:textColor="@color/white"
+        android:textColor="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/specialties"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.667" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/autoAcceptSwitch"
         android:layout_width="147dp"
         android:layout_height="48dp"
+        gravity="center"
         android:layout_marginTop="1dp"
         android:text="AutoAccept"
+        android:textColor="@color/offwhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.268"
+        app:layout_constraintHorizontal_bias="0.261"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/specialties"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.667" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
