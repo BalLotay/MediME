@@ -23,7 +23,7 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
 
         MaterialButton addShiftButton = findViewById(R.id.addShiftButton);
         MaterialButton viewPendingAppointmentsButton = findViewById(R.id.viewPendingAppointmentsButton);
-        MaterialButton viewPastAppointmentsButton = findViewById(R.id.viewPastAppointmentsButton);
+        MaterialButton viewApprovedAppointmentsButton = findViewById(R.id.viewApprovedAppointmentsButton);
 
         MaterialButton addAppointmentButton = findViewById(R.id.addAppointmentButton);
 
@@ -40,7 +40,7 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         else if (personType.equals("Doctor")) {
             addShiftButton.setVisibility(View.VISIBLE);
             viewPendingAppointmentsButton.setVisibility(View.VISIBLE);
-            viewPastAppointmentsButton.setVisibility(View.VISIBLE);
+            viewApprovedAppointmentsButton.setVisibility(View.VISIBLE);
         } else {
             addAppointmentButton.setVisibility(View.VISIBLE);
         }
@@ -65,7 +65,15 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewPendingAppointments.class);
-                intent.putExtra("", personType);
+                intent.putExtra("doctorUsername", username);
+                startActivity(intent);
+            }
+        });
+
+        viewApprovedAppointmentsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewApprovedAppointments.class);
                 intent.putExtra("doctorUsername", username);
                 startActivity(intent);
             }
