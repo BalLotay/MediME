@@ -5,7 +5,7 @@
     android:id="@+id/UserLogIn"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/background"
     tools:context=".MainActivitySuccessfulLogin">
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -24,8 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/design_default_color_primary_dark"
+            android:textColor="@color/background"
             android:text="VIEW REJECTED APPLICANTS"
 
             android:visibility="invisible"/>
@@ -48,9 +47,100 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/design_default_color_primary_dark"
+            android:textColor="@color/background"
             android:text="VIEW PENDING APPLICANTS"
+
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="363dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="130dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addShiftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:textColor="@color/background"
+            android:text="ADD SHIFT"
+
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="363dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="180dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/viewApprovedAppointmentsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:textColor="@color/background"
+            android:text="VIEW PAST APPOINTMENTS"
+
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="363dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="130dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addAppointmentButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:textColor="@color/background"
+            android:text="ADD APPOINTMENT"
+
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="363dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="230dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/viewPendingAppointmentsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:textColor="@color/background"
+            android:text="VIEW PENDING APPOINTMENTS"
 
             android:visibility="invisible"/>
     </LinearLayout>
@@ -72,8 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/design_default_color_primary_dark"
+            android:textColor="@color/background"
             android:text="LOG OFF" />
     </LinearLayout>
 
@@ -84,7 +173,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="Welcome!"
-        android:textColor="@color/white"
+        android:textColor="@color/offwhite"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -103,7 +192,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Welcome"
-        app:layout_constraintVertical_bias="0.425">
+        app:layout_constraintVertical_bias="0.261">
 
         <TextView
             android:id="@+id/SuccessfulLogin"
@@ -112,7 +201,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="You are logged in as"
-            android:textColor="@color/white"
+            android:textColor="@color/offwhite"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -123,9 +212,9 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:text="Person"
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold|italic" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

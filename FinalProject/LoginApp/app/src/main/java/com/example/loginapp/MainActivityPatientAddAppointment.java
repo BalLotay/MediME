@@ -3,21 +3,12 @@ package com.example.loginapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
 import android.app.DatePickerDialog;
-import android.view.View;
-import android.widget.Button;
-
-
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,54 +23,40 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-
-public class MainActivityCreateShift extends AppCompatActivity {
+public class MainActivityPatientAddAppointment extends AppCompatActivity {
 
     private Button selectDateButton;
     private Button selectStartTimeButton;
     private Button selectEndTimeButton;
 
     private Button confirmButton;
+    private EditText doctorEditText;
 
     private Calendar selectedDate;
     private String date;
     private Calendar selectedStartTime;
     private Calendar selectedEndTime;
+    private Button addAppointment;
 
-    private Doctor doctor;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference userRef = database.getReference("Users");
 
-    private List<Shift> shifts;
-
-    String username;
+    List<Appointment> doctorAppointments;
+    List<Appointment> patientAppointments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_create_shift);
+        setContentView(R.layout.activity_main_patient_add_appointment);
 
         selectDateButton = findViewById(R.id.select);
         selectStartTimeButton = findViewById(R.id.start);
         selectEndTimeButton = findViewById(R.id.end);
-        confirmButton = findViewById(R.id.confirm);
+        confirmButton = findViewById(R.id.addAppointmentButton);
 
-        String user = getIntent().getStringExtra("user");
-        username = user;
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference userRef = database.getReference("Users");
-
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                GenericTypeIndicator<List<Shift>> temp = new GenericTypeIndicator<List<Shift>>(){};
-                shifts = snapshot.child(username).child("shifts").getValue(temp);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        doctorEditText = findViewById(R.id.doctor);
+        addAppointment = findViewById(R.id.addAppointment);
+        String username = getIntent().getStringExtra("Username");
 
         selectDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,62 +79,48 @@ public class MainActivityCreateShift extends AppCompatActivity {
             }
         });
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
+        addAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Create and handle the shift object using the selectedDate, selectedStartTime, and selectedEndTime
-                if (selectedDate != null && selectedStartTime != null && selectedEndTime != null) {
-                    int startHour = 100*selectedStartTime.get(Calendar.HOUR_OF_DAY);
-                    int startMinute = selectedStartTime.get(Calendar.MINUTE);
+            public void onClick(View view) {
+                String doctorUsername = doctorEditText.getText().toString();
 
-                    int endHour = 100*selectedEndTime.get(Calendar.HOUR_OF_DAY);
-                    int endMinute = selectedEndTime.get(Calendar.MINUTE);
+                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    int start = startHour + startMinute;
-                    int end= endHour + endMinute;
+                        // Create and handle the appointment object using the selectedDate, selectedStartTime, and selectedEndTime
+                        if (selectedDate != null && selectedStartTime != null && selectedEndTime != null) {
+                            int startHour = 100 * selectedStartTime.get(Calendar.HOUR_OF_DAY);
+                            int startMinute = selectedStartTime.get(Calendar.MINUTE);
 
-                    boolean conflicts = false;
+                            int endHour = 100 * selectedEndTime.get(Calendar.HOUR_OF_DAY);
+                            int endMinute = selectedEndTime.get(Calendar.MINUTE);
 
-                    Shift newShift = new Shift(date,String.valueOf(start),String.valueOf(end), username);
-                    /*
-                    shifts.add(newShift);
-                    //add to database (replace list with updated)
-                    userRef.child(username).child("shifts").setValue(shifts);
+                            int start = startHour + startMinute;
+                            int end = endHour + endMinute;
 
-                     */
+                            GenericTypeIndicator<List<Appointment>> temp = new GenericTypeIndicator<List<Appointment>>(){};
+                            patientAppointments = snapshot.child(username).child("appointments").getValue(temp);
+                            doctorAppointments = snapshot.child(doctorUsername).child("appointments").getValue(temp);
 
-
-                    if(!newShift.isValid()){
-                        //invalid shift toast
-                        Toast.makeText(MainActivityCreateShift.this, "Invalid Shift Entered, check time entered", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                         for (int i = 1; i < shifts.size(); i++){
-                            if(newShift.conflictsWith(shifts.get(i))){
-                                conflicts = true;
-                            }
+                            Appointment newAppointment = new Appointment(username, doctorUsername, date, String.valueOf(start), String.valueOf(end));
+                            doctorAppointments.add(newAppointment);
+                            patientAppointments.add(newAppointment);
+                            userRef.child(username).child("appointments").setValue(patientAppointments);
+                            userRef.child(doctorUsername).child("appointments").setValue(doctorAppointments);
+                        } else {
+                            // Handle case where not all input data is selected.
+                            Toast.makeText(MainActivityPatientAddAppointment.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                         }
-                        if (!conflicts){
-                            shifts.add(newShift);
-                            //add to database (replace list with updated)
-                            userRef.child(username).child("shifts").setValue(shifts);
-                            Toast.makeText(MainActivityCreateShift.this, "shift added", Toast.LENGTH_SHORT).show();
 
-                        }
-                        else{
-                            //conflicts toast
-                            Toast.makeText(MainActivityCreateShift.this, "Cannot add shift due to time conflict", Toast.LENGTH_SHORT).show();
-                        }
+
                     }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-
-
-
-
-                } else {
-                    // Handle case where not all input data is selected.
-                }
+                    }
+                });
             }
         });
     }
@@ -177,7 +140,6 @@ public class MainActivityCreateShift extends AppCompatActivity {
                 // Format the selected date as desired (e.g., "MM/dd/yyyy")
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                 String formattedDate = dateFormat.format(selectedDate.getTime());
-
                 date = formattedDate;
                 // Update the date button text
                 selectDateButton.setText(formattedDate); //Shift("10/11/2023", 400, 800, "s1")
@@ -244,6 +206,5 @@ public class MainActivityCreateShift extends AppCompatActivity {
         // Show the time picker dialog
         timePickerDialog.show(getSupportFragmentManager(), "TimePickerDialog");
     }
-
 
 }

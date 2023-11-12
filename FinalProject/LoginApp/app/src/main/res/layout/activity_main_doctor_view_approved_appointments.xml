@@ -4,26 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityViewApplicants"
+    tools:context=".MainActivityDoctorViewApprovedAppointments"
     android:background="@color/background">
 
     <TextView
-        android:id="@+id/applicantsTextView"
-        android:layout_width="227dp"
-        android:layout_height="72dp"
+        android:id="@+id/appointmentsTextView"
+        android:layout_width="399dp"
+        android:layout_height="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="4dp"
         android:layout_marginTop="48dp"
         android:gravity="center"
-        android:text="Applicants"
+        android:text="Approved Appointments"
         android:textColor="@color/offwhite"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:id="@+id/scrollViewApplicants"
+        android:id="@+id/scrollViewAppointments"
         android:layout_width="409dp"
         android:layout_height="match_parent"
         android:layout_marginTop="140dp"
@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/applicantsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/appointmentsTextView"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout

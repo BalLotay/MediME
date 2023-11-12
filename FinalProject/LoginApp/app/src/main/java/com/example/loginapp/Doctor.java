@@ -1,34 +1,35 @@
 package com.example.loginapp;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Doctor extends Person {
-
-    private String[] specialties;
+    private List<String> specialties;
     private int employeeNumber;
-
     private String status;
     private boolean autoAcceptStatus;
     private List<Appointment> appointments;
-
     private List<Shift> shifts;
 
+    public Doctor() {
 
+    }
 
     public Doctor(String firstName, String lastName, String emailAddress, String accountPassword, String phoneNumber, String address, int employeeNumber, String status, String ...specialties){
         super(firstName, lastName, emailAddress, accountPassword, phoneNumber, address);
         this.employeeNumber = employeeNumber;
-        this.specialties = specialties;
+        this.specialties = Arrays.asList(specialties);
         this.status = status;
-        appointments = new ArrayList<Appointment>();
-        shifts = new ArrayList<Shift>();
-        Shift nullShift = new Shift("null","null","null",firstName);
-        shifts.add(nullShift);
+        this.appointments = new ArrayList<>();
+
+        // Dummy appointment and shift to act as placeholder for Realtime Database
+        shifts.add(new Shift("null","null","null",firstName));
+        appointments.add(new Appointment("null", "null", "null", "null", "null"));
     }
 
     public List<Appointment> getAppointments(){
-        return appointments;
+        return this.appointments;
     }
 
     public void setAppointments(List<Appointment> list){
@@ -54,6 +55,10 @@ public class Doctor extends Person {
         return appointments.get(i);
     }
 
+    public void removeAppointment(int i) {
+        appointments.remove(i);
+    }
+
     public void setAutoAcceptStatus(boolean autoAcceptStatus){
         this.autoAcceptStatus = autoAcceptStatus;
     }
@@ -76,11 +81,11 @@ public class Doctor extends Person {
     public void setEmployeeNumber(int newEmployeeNumber) {
         employeeNumber = newEmployeeNumber;
     }
-    public String getSpecialties() {
-        return Arrays.toString(specialties);
+    public List<String> getSpecialties() {
+        return specialties;
     }
 
-    public void setSpecialties(String ...specialties) {
+    public void setSpecialties(List<String> specialties) {
         this.specialties = specialties;
     }
 
