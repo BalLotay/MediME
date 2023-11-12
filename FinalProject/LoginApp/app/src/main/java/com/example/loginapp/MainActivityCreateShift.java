@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -122,11 +124,41 @@ public class MainActivityCreateShift extends AppCompatActivity {
                     int start = startHour + startMinute;
                     int end= endHour + endMinute;
 
+                    boolean conflicts = false;
+
                     Shift newShift = new Shift(date,String.valueOf(start),String.valueOf(end), username);
-                    //comparison
+                    /*
                     shifts.add(newShift);
                     //add to database (replace list with updated)
                     userRef.child(username).child("shifts").setValue(shifts);
+
+                     */
+
+
+                    if(!newShift.isValid()){
+                        //invalid shift toast
+                        Toast.makeText(MainActivityCreateShift.this, "Invalid Shift Entered, check time entered", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                         for (int i = 1; i < shifts.size(); i++){
+                            if(newShift.conflictsWith(shifts.get(i))){
+                                conflicts = true;
+                            }
+                        }
+                        if (!conflicts){
+                            shifts.add(newShift);
+                            //add to database (replace list with updated)
+                            userRef.child(username).child("shifts").setValue(shifts);
+                            Toast.makeText(MainActivityCreateShift.this, "shift added", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else{
+                            //conflicts toast
+                            Toast.makeText(MainActivityCreateShift.this, "Cannot add shift due to time conflict", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+
 
 
 
@@ -153,6 +185,7 @@ public class MainActivityCreateShift extends AppCompatActivity {
                 // Format the selected date as desired (e.g., "MM/dd/yyyy")
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
                 String formattedDate = dateFormat.format(selectedDate.getTime());
+
                 date = formattedDate;
                 // Update the date button text
                 selectDateButton.setText(formattedDate); //Shift("10/11/2023", 400, 800, "s1")
