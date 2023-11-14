@@ -44,7 +44,6 @@ public class MainActivityPatientRegister extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (checkDataEntered()) {
                     registerUser();
                 }

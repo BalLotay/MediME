@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.util.List;
 
 public class MainActivityDoctorViewPastAppointments extends AppCompatActivity {
@@ -73,8 +75,11 @@ public class MainActivityDoctorViewPastAppointments extends AppCompatActivity {
                         String healthCardNumber = snapshot.child(firstName).child("healthCardNumber").getValue().toString();
 
                         String firstAndLastName = firstName + " " + lastName;
+                        boolean isPastAppointment = false;
 
-                        if (appointmentStatus.equals("approved") && appointment.isPastAppointment()) {
+                        isPastAppointment = appointment.isPastAppointment();
+
+                        if (appointmentStatus.equals("approved") && isPastAppointment) {
                             LinearLayout layout = new LinearLayout(MainActivityDoctorViewPastAppointments.this,null,0, R.style.ApplicantLinearLayout);
                             layout.setLayoutParams(paramsLinearLayout);
                             TextView textView = new TextView(MainActivityDoctorViewPastAppointments.this,null,0,R.style.ApplicantNameView);

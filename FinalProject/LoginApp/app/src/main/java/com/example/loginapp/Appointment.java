@@ -66,12 +66,17 @@ public class Appointment {
 		this.date = d;
 	}
 
-	public boolean isPastAppointment() {
+	public boolean isPastAppointment(){
+
+		if (date == null || startTime == null) {
+			return false;
+		}
+
 		try {
 			return new SimpleDateFormat("MM/dd/yyyy").parse(date).before(new Date())
 					&& new SimpleDateFormat("HHmm").parse(startTime).before(new Date());
-		} catch (ParseException e) {
-			throw new RuntimeException(e);
+		} catch (ParseException pe) {
+			return false;
 		}
 	}
 
