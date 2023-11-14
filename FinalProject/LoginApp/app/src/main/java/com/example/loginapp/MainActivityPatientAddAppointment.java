@@ -154,6 +154,8 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
             }
         }, year, month, day);
 
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+
         // Show the date picker dialog
         datePickerDialog.show();
     }
