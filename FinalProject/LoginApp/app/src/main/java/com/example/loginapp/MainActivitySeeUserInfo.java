@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivitySeeUserInfo extends AppCompatActivity {
 
@@ -27,7 +26,6 @@ public class MainActivitySeeUserInfo extends AppCompatActivity {
         LinearLayout specialtiesLayout = findViewById(R.id.specialtiesLayout);
 
         String[] personDetails = getIntent().getStringArrayExtra("person details");
-        Toast.makeText(this, personDetails[0], Toast.LENGTH_SHORT).show();
 
             firstNameView.setText(personDetails[0]);
             lastNameView.setText(personDetails[1]);

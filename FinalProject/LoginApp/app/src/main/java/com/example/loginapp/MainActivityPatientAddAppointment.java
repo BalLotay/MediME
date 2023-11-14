@@ -52,7 +52,6 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
         selectDateButton = findViewById(R.id.select);
         selectStartTimeButton = findViewById(R.id.start);
         selectEndTimeButton = findViewById(R.id.end);
-        confirmButton = findViewById(R.id.addAppointmentButton);
 
         doctorEditText = findViewById(R.id.doctor);
         addAppointment = findViewById(R.id.addAppointment);
@@ -104,6 +103,15 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
                             doctorAppointments = snapshot.child(doctorUsername).child("appointments").getValue(temp);
 
                             Appointment newAppointment = new Appointment(username, doctorUsername, date, String.valueOf(start), String.valueOf(end));
+
+                            boolean autoAcceptStatus = (boolean) snapshot.child(doctorUsername).child("autoAcceptStatus").getValue();
+                            if (autoAcceptStatus) {
+                                newAppointment.setStatus("approved");
+                                Toast.makeText(MainActivityPatientAddAppointment.this, "Appointment accepted!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(MainActivityPatientAddAppointment.this, "Appointment request sent", Toast.LENGTH_SHORT).show();
+                            }
+
                             doctorAppointments.add(newAppointment);
                             patientAppointments.add(newAppointment);
                             userRef.child(username).child("appointments").setValue(patientAppointments);

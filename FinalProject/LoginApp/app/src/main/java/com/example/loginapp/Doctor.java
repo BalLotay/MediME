@@ -22,6 +22,8 @@ public class Doctor extends Person {
         this.specialties = Arrays.asList(specialties);
         this.status = status;
         this.appointments = new ArrayList<>();
+        this.shifts = new ArrayList<>();
+        this.autoAcceptStatus = false;
 
         // Dummy appointment and shift to act as placeholder for Realtime Database
         shifts.add(new Shift("null","null","null",firstName));

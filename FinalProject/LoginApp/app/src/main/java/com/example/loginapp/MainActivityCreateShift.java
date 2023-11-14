@@ -141,7 +141,7 @@ public class MainActivityCreateShift extends AppCompatActivity {
                             shifts.add(newShift);
                             //add to database (replace list with updated)
                             userRef.child(username).child("shifts").setValue(shifts);
-                            Toast.makeText(MainActivityCreateShift.this, "shift added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivityCreateShift.this, "Shift added", Toast.LENGTH_SHORT).show();
 
                         }
                         else{

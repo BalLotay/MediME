@@ -13,7 +13,7 @@
         android:theme="@style/Theme.LoginApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivityDoctorViewApprovedAppointments"
+            android:name=".MainActivityDoctorViewPastAppointments"
             android:exported="false" />
         <activity
             android:name=".MainActivityCreateShift"
@@ -24,7 +24,7 @@
             android:name=".MainActivityPatientAddAppointment"
             android:exported="false" />
         <activity
-            android:name=".MainActivityDoctorViewPendingAppointments"
+            android:name=".MainActivityDoctorViewUpcomingAppointments"
             android:exported="false" />
         <activity
             android:name=".MainActivityViewRejectedApplicants"

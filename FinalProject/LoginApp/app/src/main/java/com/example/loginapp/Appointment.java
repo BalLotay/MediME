@@ -1,6 +1,10 @@
 package com.example.loginapp;
 import androidx.annotation.NonNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Appointment {
 	String status; // pending, approved or cancelled
 	String date;
@@ -12,6 +16,7 @@ public class Appointment {
 	public Appointment() {
 
 	}
+
 	public Appointment(String patient, String doctor, String date, String startTime, String endTime) {
 		status = "pending";
 		this.patient = patient;
@@ -59,6 +64,15 @@ public class Appointment {
 
 	public void setDate(String d) {
 		this.date = d;
+	}
+
+	public boolean isPastAppointment() {
+		try {
+			return new SimpleDateFormat("MM/dd/yyyy").parse(date).before(new Date())
+					&& new SimpleDateFormat("HHmm").parse(startTime).before(new Date());
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@NonNull

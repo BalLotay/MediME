@@ -22,8 +22,8 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         MaterialButton viewRejectedApplicantsButton = findViewById(R.id.viewRejectedApplicantsButton);
 
         MaterialButton addShiftButton = findViewById(R.id.addShiftButton);
-        MaterialButton viewPendingAppointmentsButton = findViewById(R.id.viewPendingAppointmentsButton);
-        MaterialButton viewApprovedAppointmentsButton = findViewById(R.id.viewApprovedAppointmentsButton);
+        MaterialButton viewPastAppointmentsButton = findViewById(R.id.viewPastAppointmentsButton);
+        MaterialButton viewUpcomingAppointmentsButton = findViewById(R.id.viewUpcomingAppointmentsButton);
 
         MaterialButton addAppointmentButton = findViewById(R.id.addAppointmentButton);
 
@@ -39,8 +39,9 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         }
         else if (personType.equals("Doctor")) {
             addShiftButton.setVisibility(View.VISIBLE);
-            viewPendingAppointmentsButton.setVisibility(View.VISIBLE);
-            viewApprovedAppointmentsButton.setVisibility(View.VISIBLE);
+            viewPastAppointmentsButton.setVisibility(View.VISIBLE);
+            viewUpcomingAppointmentsButton.setVisibility(View.VISIBLE);
+            viewUpcomingAppointmentsButton.setVisibility(View.VISIBLE);
         } else {
             addAppointmentButton.setVisibility(View.VISIBLE);
         }
@@ -61,19 +62,19 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
             }
         });
 
-        viewPendingAppointmentsButton.setOnClickListener(new View.OnClickListener() {
+        viewUpcomingAppointmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewPendingAppointments.class);
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewUpcomingAppointments.class);
                 intent.putExtra("doctorUsername", username);
                 startActivity(intent);
             }
         });
 
-        viewApprovedAppointmentsButton.setOnClickListener(new View.OnClickListener() {
+        viewPastAppointmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewApprovedAppointments.class);
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewPastAppointments.class);
                 intent.putExtra("doctorUsername", username);
                 startActivity(intent);
             }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,26 +19,27 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class MainActivityDoctorViewPendingAppointments extends AppCompatActivity {
+public class MainActivityDoctorViewPastAppointments extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_doctor_view_pending_appointments);
+        setContentView(R.layout.activity_main_doctor_view_approved_appointments);
 
-        LinearLayout.LayoutParams params =
+        LinearLayout.LayoutParams paramsTextView =
                 new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                        1.0f);
 
-        params.setMargins(10, 0, 0, 0);
+        paramsTextView.setMargins(10, 0, 0, 0);
 
-        LinearLayout.LayoutParams params1 =
+        LinearLayout.LayoutParams paramsLinearLayout =
                 new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.MATCH_PARENT,
                         180);
 
-        params1.setMargins(0, 10, 0, 0);
+        paramsLinearLayout.setMargins(0, 10, 0, 0);
 
         LinearLayout layoutScrollView = findViewById(R.id.layoutInScrollView);
 
@@ -61,12 +61,10 @@ public class MainActivityDoctorViewPendingAppointments extends AppCompatActivity
 
                     for (int i = 1; i < doctorAppointments.size(); i++) {   // First appointment (at index 0) is a dummy
                         Appointment appointment = doctorAppointments.get(i);
-                        Log.d("doctorAppointments", appointment.toString());
 
                         String appointmentStatus = appointment.getStatus();
 
                         String firstName = appointment.getPatient();
-                        Log.d("doctorAppointments", firstName);
 
                         String lastName = snapshot.child(firstName).child("lastName").getValue().toString();
                         String emailAddress = snapshot.child(firstName).child("emailAddress").getValue().toString();
@@ -76,63 +74,24 @@ public class MainActivityDoctorViewPendingAppointments extends AppCompatActivity
 
                         String firstAndLastName = firstName + " " + lastName;
 
-                        if (appointmentStatus.equals("pending")) {
-                            LinearLayout layout = new LinearLayout(MainActivityDoctorViewPendingAppointments.this,null,0, R.style.ApplicantLinearLayout);
-                            layout.setLayoutParams(params1);
-                            TextView textView = new TextView(MainActivityDoctorViewPendingAppointments.this,null,0,R.style.ApplicantNameView);
-                            MaterialButton acceptButton = new MaterialButton(MainActivityDoctorViewPendingAppointments.this, null);
-                            MaterialButton rejectButton = new MaterialButton(MainActivityDoctorViewPendingAppointments.this, null);
-                            acceptButton.setText("Accept");
-                            rejectButton.setText("Reject");
-                            rejectButton.setLayoutParams(params);
-
+                        if (appointmentStatus.equals("approved") && appointment.isPastAppointment()) {
+                            LinearLayout layout = new LinearLayout(MainActivityDoctorViewPastAppointments.this,null,0, R.style.ApplicantLinearLayout);
+                            layout.setLayoutParams(paramsLinearLayout);
+                            TextView textView = new TextView(MainActivityDoctorViewPastAppointments.this,null,0,R.style.ApplicantNameView);
+                            textView.setLayoutParams(paramsTextView);
+                            layout.setPadding(5,5,50,5);
                             textView.setText(firstAndLastName);
                             layout.addView(textView);
-                            layout.addView(acceptButton);
-                            layout.addView(rejectButton);
                             layoutScrollView.addView(layout);
                             textView.setClickable(true);
 
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Intent intent = new Intent(MainActivityDoctorViewPendingAppointments.this, MainActivitySeeUserInfo.class);
+                                    Intent intent = new Intent(MainActivityDoctorViewPastAppointments.this, MainActivitySeeUserInfo.class);
                                     String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, healthCardNumber, null, "viewPendingAppointments"};
                                     intent.putExtra("person details", personDetails);
                                     startActivity(intent);
-                                }
-                            });
-
-                            acceptButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    appointment.setStatus("approved");
-                                    doctorAppointments.remove(appointment);
-                                    doctorAppointments.add(appointment);
-                                    userRef.child(doctorUsername).child("appointments").setValue(doctorAppointments);
-
-                                    List<Appointment> patientAppointments = snapshot.child(firstName).child("appointments").getValue(temp);
-                                    patientAppointments.remove(patientAppointments.size()-1);
-                                    patientAppointments.add(appointment);
-                                    userRef.child(firstName).child("appointments").setValue(patientAppointments);
-
-                                    layoutScrollView.removeView(layout);
-                                }
-                            });
-                            rejectButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    layoutScrollView.removeView(layout);
-
-                                    appointment.setStatus("rejected");
-                                    doctorAppointments.remove(appointment);
-                                    doctorAppointments.add(appointment);
-                                    userRef.child(doctorUsername).child("appointments").setValue(doctorAppointments);
-
-                                    List<Appointment> patientAppointments = snapshot.child(firstName).child("appointments").getValue(temp);
-                                    patientAppointments.remove(appointment);
-                                    patientAppointments.add(appointment);
-                                    userRef.child(firstName).child("appointments").setValue(patientAppointments);
                                 }
                             });
 
