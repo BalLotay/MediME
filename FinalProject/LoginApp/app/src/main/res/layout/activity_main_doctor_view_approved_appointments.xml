@@ -9,13 +9,13 @@
 
     <TextView
         android:id="@+id/appointmentsTextView"
-        android:layout_width="399dp"
-        android:layout_height="70dp"
+        android:layout_width="325dp"
+        android:layout_height="68dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="4dp"
         android:layout_marginTop="48dp"
         android:gravity="center"
-        android:text="Approved Appointments"
+        android:text="Past Appointments"
         android:textColor="@color/offwhite"
         android:textSize="35sp"
         android:textStyle="bold"

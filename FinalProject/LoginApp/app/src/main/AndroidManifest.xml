@@ -24,8 +24,7 @@
         <activity
             android:name=".MainActivityCreateShift"
             android:exported="false"
-            android:label="@string/title_activity_main_create_shift"
-            android:theme="@style/Theme.LoginApp" />
+            android:label="@string/title_activity_main_create_shift" />
         <activity
             android:name=".MainActivityPatientAddAppointment"
             android:exported="false" />

@@ -88,7 +88,7 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         // Create and handle the appointment object using the selectedDate, selectedStartTime, and selectedEndTime
-                        if (selectedDate != null && selectedStartTime != null && selectedEndTime != null) {
+                        if (selectedDate != null && selectedStartTime != null && selectedEndTime != null && !doctorUsername.equals("")) {
                             int startHour = 100 * selectedStartTime.get(Calendar.HOUR_OF_DAY);
                             int startMinute = selectedStartTime.get(Calendar.MINUTE);
 

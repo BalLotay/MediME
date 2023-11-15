@@ -1,22 +1,15 @@
 package com.example.loginapp;
 
-import java.util.Date;
-import java.util.Calendar;
 public class Shift {
 
     String date;
-
     String startTime;
-
     String endTime;
-
     String doctor;
 
     public Shift(){
 
     }
-
-
 
     public Shift(String date, String startTime, String endTime, String doctor){
         this.date = date;
