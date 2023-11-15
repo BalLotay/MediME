@@ -1,6 +1,7 @@
 # SEG2105A Project - Group 39
+## MediME
 
-In this project, our team implemented the Healthcare Appointment Management System (HAMS) for a telehealth clinic. HAMS is a mobile application designed to streamline the process of healthcare appointment scheduling and management. 
+In this project, our team implemented a Healthcare Appointment Management System (HAMS) for a telehealth clinic. HAMS is a mobile application designed to streamline the process of healthcare appointment scheduling and management. 
 
 The app currently supports three types of users: Patient, Doctor, and Administrator, and features such as logging in, signing up, logging off, and has its data securely stored and authenticated online using Firebase's Realtime Database.
 
@@ -28,5 +29,8 @@ Additionally, do take note of the following:
 
 The app is able to store data on a Firebase database, as seen in the screenshot below:
 
-
 ![Screenshot of the database in Firebase](Images/Firebase.png)
+
+### SVG credits:
+
+App icon: https://www.flaticon.com/free-icon/daily-health-app_3845768
