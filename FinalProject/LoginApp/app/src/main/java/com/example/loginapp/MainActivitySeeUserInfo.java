@@ -27,12 +27,12 @@ public class MainActivitySeeUserInfo extends AppCompatActivity {
 
         String[] personDetails = getIntent().getStringArrayExtra("person details");
 
-            firstNameView.setText(personDetails[0]);
-            lastNameView.setText(personDetails[1]);
-            emailView.setText(personDetails[2]);
-            phoneView.setText(personDetails[3]);
-            addressView.setText(personDetails[4]);
-            healthCardNumView.setText(personDetails[5]);
+        firstNameView.setText(personDetails[0]);
+        lastNameView.setText(personDetails[1]);
+        emailView.setText(personDetails[2]);
+        phoneView.setText(personDetails[3]);
+        addressView.setText(personDetails[4]);
+        healthCardNumView.setText(personDetails[5]);
 
 
 
@@ -42,13 +42,13 @@ public class MainActivitySeeUserInfo extends AppCompatActivity {
             specialtiesView.setText(personDetails[6]);
         }
 
-                try {
-        if(personDetails[7] != null) {
-            userTextView.setText("Patient Details");
+        try {
+            if(personDetails[7] != null) {
+                userTextView.setText("Patient Details");
+            }
+        } catch (Exception e) {
+            Log.d("userinfo error", e.getMessage());
         }
-                } catch (Exception e) {
-                    Log.d("userinfo error", e.getMessage());
-                }
 
     }
 }
