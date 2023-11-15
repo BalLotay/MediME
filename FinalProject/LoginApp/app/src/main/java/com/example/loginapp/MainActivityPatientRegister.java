@@ -3,6 +3,7 @@ package com.example.loginapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,7 +44,6 @@ public class MainActivityPatientRegister extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (checkDataEntered()) {
                     registerUser();
                 }
@@ -61,8 +61,8 @@ public class MainActivityPatientRegister extends AppCompatActivity {
         String phoneNumStr = phoneNum.getText().toString();
         int healthNumInt = Integer.parseInt(healthNum.getText().toString());
         String status = "pending";
-
-        Patient patient = new Patient(firstNameStr, lastNameStr, emailStr, passwordStr, phoneNumStr, addressStr, healthNumInt, status);
+        Patient patient = null;
+        patient = new Patient(firstNameStr, lastNameStr, emailStr, passwordStr, phoneNumStr, addressStr, healthNumInt, status);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
@@ -70,7 +70,7 @@ public class MainActivityPatientRegister extends AppCompatActivity {
         myRef.child("Users").child(patient.getFirstName()).setValue(patient);
         myRef.child("Users").child(patient.getFirstName()).child("userType").setValue("Patient");
 
-        Toast t = Toast.makeText(MainActivityPatientRegister.this, "REGISTRATION REQUEST SENT!", Toast.LENGTH_SHORT);
+        Toast t = Toast.makeText(MainActivityPatientRegister.this, "Registration request sent!", Toast.LENGTH_SHORT);
         t.show();
 
         Intent intent = new Intent(MainActivityPatientRegister.this, MainActivityHome.class);

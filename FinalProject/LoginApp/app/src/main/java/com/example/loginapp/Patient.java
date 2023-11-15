@@ -1,34 +1,44 @@
 package com.example.loginapp;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Patient extends Person {
 
     private int healthCardNumber;
-
     private String status;
-    private ArrayList<Appointment> appointments;
+    private List<Appointment> appointments;
+
+    public Patient() {
+
+    }
 
     public Patient(String firstName, String lastName, String emailAddress, String accountPassword, String phoneNumber, String address, int healthCardNumber, String status){
         super(firstName, lastName, emailAddress, accountPassword, phoneNumber, address);
         this.healthCardNumber = healthCardNumber;
         this.status = "pending";
-        ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+        this.appointments = new ArrayList<>();
+
+        // Dummy appointment to act as placeholder for Realtime Database
+        appointments.add(new Appointment("null", "null", "null", "null", "null"));
     }
 
-     public ArrayList<Appointment> getAppointments(){
-        return appointments;
+    public List<Appointment> getAppointments(){
+        return this.appointments;
     }
 
-    public void setAppointments(ArrayList<Appointment> list){
-        appointments = list;
+    public void setAppointments(List<Appointment> list){
+        this.appointments = list;
     }
 
     public void addAppointment(Appointment a){
-        appointments.add(a);
+        this.appointments.add(a);
     }
-    public Appointment getAppointment(i){
-        return appointments.get(i);
+
+    public Appointment getAppointment(int i){
+        return this.appointments.get(i);
     }
 
     public String getStatus(){
@@ -38,6 +48,7 @@ public class Patient extends Person {
     public void setStatus(String status){ // status can either be "pending", "accepted", or "declined"
         this.status = status;
     }
+
     public int getHealthCardNumber() {
         return healthCardNumber;
     }
@@ -45,6 +56,5 @@ public class Patient extends Person {
     public void setHealthCardNumber(int newHealthCardNumber) {
         healthCardNumber = newHealthCardNumber;
     }
-
 
 }

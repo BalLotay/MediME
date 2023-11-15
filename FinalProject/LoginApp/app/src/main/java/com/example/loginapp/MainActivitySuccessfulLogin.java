@@ -16,16 +16,36 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         setContentView(R.layout.activity_main_successful_login);
 
         MaterialButton logOffButton = findViewById(R.id.logOffButton);
-        MaterialButton viewApplicantsButton = findViewById(R.id.viewApplicantsButton);
-        MaterialButton viewRejectedApplicantsButton = findViewById(R.id.viewRejectedApplicantsButton);
         TextView role = findViewById(R.id.role);
 
-        String personType = getIntent().getStringExtra("person type");
+        MaterialButton viewApplicantsButton = findViewById(R.id.viewApplicantsButton);
+        MaterialButton viewRejectedApplicantsButton = findViewById(R.id.viewRejectedApplicantsButton);
+
+        MaterialButton addShiftButton = findViewById(R.id.addShiftButton);
+        MaterialButton viewPastAppointmentsButton = findViewById(R.id.viewPastAppointmentsButton);
+        MaterialButton viewUpcomingAppointmentsButton = findViewById(R.id.viewUpcomingAppointmentsButton);
+        MaterialButton viewShiftsButton = findViewById(R.id.viewShiftsButton);
+
+        MaterialButton addAppointmentButton = findViewById(R.id.addAppointmentButton);
+
+        String[] personDetails = getIntent().getStringArrayExtra("person details");
+        String personType = personDetails[0];
+        String username = personDetails[1];
+
         role.setText(personType);
 
         if (personType.equals("Admin")) {
             viewApplicantsButton.setVisibility(View.VISIBLE);
             viewRejectedApplicantsButton.setVisibility(View.VISIBLE);
+        }
+        else if (personType.equals("Doctor")) {
+            addShiftButton.setVisibility(View.VISIBLE);
+            viewPastAppointmentsButton.setVisibility(View.VISIBLE);
+            viewUpcomingAppointmentsButton.setVisibility(View.VISIBLE);
+            viewUpcomingAppointmentsButton.setVisibility(View.VISIBLE);
+            viewShiftsButton.setVisibility(View.VISIBLE);
+        } else {
+            addAppointmentButton.setVisibility(View.VISIBLE);
         }
 
         viewApplicantsButton.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +60,52 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityViewRejectedApplicants.class);
+                startActivity(intent);
+            }
+        });
+
+        viewUpcomingAppointmentsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewUpcomingAppointments.class);
+                intent.putExtra("doctorUsername", username);
+                startActivity(intent);
+            }
+        });
+
+        viewPastAppointmentsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewPastAppointments.class);
+                intent.putExtra("doctorUsername", username);
+                startActivity(intent);
+            }
+        });
+
+        viewShiftsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityViewShifts.class);
+                intent.putExtra("doctorUsername", username);
+                startActivity(intent);
+            }
+        });
+
+        addShiftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityCreateShift.class);
+                intent.putExtra("user", username);
+                startActivity(intent);
+            }
+        });
+
+        addAppointmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityPatientAddAppointment.class);
+                intent.putExtra("", personType);
+                intent.putExtra("Username", username);
                 startActivity(intent);
             }
         });

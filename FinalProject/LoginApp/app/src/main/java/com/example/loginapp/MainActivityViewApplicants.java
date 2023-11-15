@@ -50,7 +50,7 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                     layoutScrollView.removeAllViews();
                     for (DataSnapshot person : snapshot.getChildren()) {
                         String firstName = person.getKey();
-                        String username = person.child("emailAddress").getValue().toString();
+                        String email = person.child("emailAddress").getValue().toString();
                         String lastName = person.child("lastName").getValue().toString();
                         String status = person.child("status").getValue().toString();
                         String firstAndLastName = firstName + " " + lastName;
@@ -63,6 +63,8 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                             MaterialButton rejectButton = new MaterialButton(MainActivityViewApplicants.this, null);
                             acceptButton.setText("Accept");
                             rejectButton.setText("Reject");
+                            acceptButton.setTextColor(getColor(R.color.background));
+                            rejectButton.setTextColor(getColor(R.color.background));
                             rejectButton.setLayoutParams(params);
 
                             textView.setText(firstAndLastName);
@@ -79,7 +81,7 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                                     String phoneStr = person.child("phoneNumber").getValue().toString();
                                     String addressStr = person.child("address").getValue().toString();
                                     String personTypeStr = person.child("userType").getValue().toString();
-                                    String[] personDetails = {firstName, lastName, username, phoneStr, addressStr, null, null};
+                                    String[] personDetails = {firstName, lastName, email, phoneStr, addressStr, null, null, null};
                                     if (personTypeStr.equals("Doctor")) {
                                         String specialties = person.child("specialties").getValue().toString();
                                         String employeeNumStr = person.child("employeeNumber").getValue().toString();
@@ -100,7 +102,7 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                                     layoutScrollView.removeView(layout);
                                     userRef.child(firstName).child("status").setValue("approved");
 //                                    For email functionality (only works if sender's email and password are provided in EmailSender.java)
-//                                    EmailSender.sendAcceptanceEmail(username);
+//                                    EmailSender.sendAcceptanceEmail(email);
                                 }
                             });
                             rejectButton.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +111,7 @@ public class MainActivityViewApplicants extends AppCompatActivity {
                                     layoutScrollView.removeView(layout);
                                     userRef.child(firstName).child("status").setValue("rejected");
 //                                    For email functionality (only works if sender's email and password are provided in EmailSender.java)
-//                                    EmailSender.sendRejectionEmail(username);
+//                                    EmailSender.sendRejectionEmail(email);
                                 }
                             });
 

@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityDoctorSeeUpcomingAppointments"
-    android:background="@color/black">
+    tools:context=".MainActivityDoctorViewUpcomingAppointments"
+    android:background="@color/background">
 
   <TextView
       android:id="@+id/appointmentsTextView"
-      android:layout_width="336dp"
-      android:layout_height="69dp"
+      android:layout_width="397dp"
+      android:layout_height="68dp"
       android:layout_centerHorizontal="true"
       android:layout_marginStart="4dp"
       android:layout_marginTop="48dp"
       android:gravity="center"
-      android:text="Appointments"
-      android:textColor="@color/white"
-      android:textSize="40sp"
+      android:text="Pending Appointments"
+      android:textColor="@color/offwhite"
+      android:textSize="35sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />

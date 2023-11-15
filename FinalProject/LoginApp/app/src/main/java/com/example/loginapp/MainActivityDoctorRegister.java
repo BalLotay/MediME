@@ -21,7 +21,7 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText address;
-    private  EditText phoneNum;
+    private EditText phoneNum;
     private EditText employeeNum;
     private EditText specialties;
     private Button register;
@@ -34,9 +34,9 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         setContentView(R.layout.activity_main_doctor_register);
 
 
-        firstName = findViewById(R.id.firstname);
-        lastName = findViewById(R.id.lastname);
-        email = findViewById(R.id.username);
+        firstName = findViewById(R.id.firstName);
+        lastName = findViewById(R.id.lastName);
+        email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         address = findViewById(R.id.address);
         phoneNum = findViewById(R.id.phonenum);
@@ -71,7 +71,7 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         boolean autoAcceptStatus = autoAcceptSwitch.isChecked();
 
 
-        Doctor doctor = new Doctor(firstNameStr, lastNameStr, emailStr, passwordStr, addressStr, phoneNumStr, employeeNumInt, status, specialtiesArray);
+        Doctor doctor = new Doctor(firstNameStr, lastNameStr, emailStr, passwordStr, phoneNumStr, addressStr, employeeNumInt, status, specialtiesArray);
 
         doctor.setAutoAcceptStatus(autoAcceptStatus);
 
@@ -81,7 +81,7 @@ public class MainActivityDoctorRegister extends AppCompatActivity {
         myRef.child("Users").child(doctor.getFirstName()).setValue(doctor);
         myRef.child("Users").child(doctor.getFirstName()).child("userType").setValue("Doctor");
 
-        Toast t = Toast.makeText(MainActivityDoctorRegister.this, "REGISTRATION REQUEST SENT!", Toast.LENGTH_SHORT);
+        Toast t = Toast.makeText(MainActivityDoctorRegister.this, "Registration request sent!", Toast.LENGTH_SHORT);
         t.show();
 
         Intent intent = new Intent(MainActivityDoctorRegister.this, MainActivityHome.class);
