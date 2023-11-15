@@ -80,7 +80,7 @@
         android:id="@+id/linearLayout5"
         android:layout_width="363dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="230dp"
+        android:layout_marginBottom="280dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -103,7 +103,7 @@
         android:id="@+id/linearLayout9"
         android:layout_width="363dp"
         android:layout_height="80dp"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="230dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -118,6 +118,29 @@
             android:layout_margin="10dp"
             android:textColor="@color/background"
             android:text="VIEW UPCOMING APPOINTMENTS"
+
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout10"
+        android:layout_width="363dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="180dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/viewShiftsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:textColor="@color/background"
+            android:text="VIEW SHIFTS"
 
             android:visibility="invisible"/>
     </LinearLayout>

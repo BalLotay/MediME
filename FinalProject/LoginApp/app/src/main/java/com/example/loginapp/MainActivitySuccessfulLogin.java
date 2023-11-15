@@ -24,6 +24,7 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         MaterialButton addShiftButton = findViewById(R.id.addShiftButton);
         MaterialButton viewPastAppointmentsButton = findViewById(R.id.viewPastAppointmentsButton);
         MaterialButton viewUpcomingAppointmentsButton = findViewById(R.id.viewUpcomingAppointmentsButton);
+        MaterialButton viewShiftsButton = findViewById(R.id.viewShiftsButton);
 
         MaterialButton addAppointmentButton = findViewById(R.id.addAppointmentButton);
 
@@ -42,6 +43,7 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
             viewPastAppointmentsButton.setVisibility(View.VISIBLE);
             viewUpcomingAppointmentsButton.setVisibility(View.VISIBLE);
             viewUpcomingAppointmentsButton.setVisibility(View.VISIBLE);
+            viewShiftsButton.setVisibility(View.VISIBLE);
         } else {
             addAppointmentButton.setVisibility(View.VISIBLE);
         }
@@ -75,6 +77,15 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewPastAppointments.class);
+                intent.putExtra("doctorUsername", username);
+                startActivity(intent);
+            }
+        });
+
+        viewShiftsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityViewShifts.class);
                 intent.putExtra("doctorUsername", username);
                 startActivity(intent);
             }

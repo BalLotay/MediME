@@ -17,4 +17,14 @@
         <item name="android:textSize">20sp</item>
         <item name="android:paddingLeft">20dp</item>
     </style>
+    <style name="statBarColor">
+        <item name="android:statusBarColor">
+            @android:color/transparent
+        </item>
+    </style>
+    <style name="navBarColor">
+        <item name="android:navigationBarColor">
+            @android:color/transparent
+        </item>
+    </style>
 </resources>
