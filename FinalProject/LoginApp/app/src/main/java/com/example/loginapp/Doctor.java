@@ -11,6 +11,10 @@ public class Doctor extends Person {
     private boolean autoAcceptStatus;
     private ArrayList<Appointment> appointments;
 
+    private ArrayList<Shift> shifts;
+
+
+
     public Doctor(String firstName, String lastName, String emailAddress, String accountPassword, String phoneNumber, String address, int employeeNumber, String status, String ...specialties){
         super(firstName, lastName, emailAddress, accountPassword, phoneNumber, address);
         this.employeeNumber = employeeNumber;
@@ -27,10 +31,18 @@ public class Doctor extends Person {
         appointments = list;
     }
 
+    public ArrayList<Shift> getShifts() {
+        return shifts;
+    }
+
+    public void setShifts(ArrayList<Shift> shifts) {
+        this.shifts = shifts;
+    }
+
     public void addAppointment(Appointment a){
         appointments.add(a);
     }
-    public Appointment getAppointment(i){
+    public Appointment getAppointment(int i){
         return appointments.get(i);
     }
 
