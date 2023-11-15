@@ -1,30 +1,37 @@
 package com.example.loginapp;
+import androidx.annotation.NonNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Appointment {
-	String status;
-	Date date;
+	String status; // pending, approved or cancelled
+	String date;
 	String startTime; // eg, "13:00"
 	String endTime;
-	Doctor doctor;
-	Patient patient;
+	String doctor; // Doctor's username (firstName)
+	String patient;
 
 	public Appointment() {
 
 	}
 
-	public Appointment(Doctor doctor, Patient patient, Date date, String endTime, String startTime) {
+	public Appointment(String patient, String doctor, String date, String startTime, String endTime) {
 		status = "pending";
-		if (doctor.getAutoAcceptStatus() == true) {
-			status = "accepted";
-		}
 		this.patient = patient;
 		this.doctor = doctor;
 		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;
+	}
 
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public String getPatient() {
+		return patient;
 	}
 
 	public String getStatus() {
@@ -51,28 +58,32 @@ public class Appointment {
 		this.startTime = s;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return this.date;
 	}
 
-	public void setDate(Date d) {
+	public void setDate(String d) {
 		this.date = d;
 	}
 
-	public Patient getPatient() {
-		return this.patient;
+	public boolean isPastAppointment(){
+
+		if (date == null || startTime == null) {
+			return false;
+		}
+
+		try {
+			return new SimpleDateFormat("MM/dd/yyyy").parse(date).before(new Date())
+					&& new SimpleDateFormat("HHmm").parse(startTime).before(new Date());
+		} catch (ParseException pe) {
+			return false;
+		}
 	}
 
-	public void setPatient(Patient p) {
-		this.patient = p;
+	@NonNull
+	@Override
+	public String toString() {
+		return "status: " + status + ", date: " + date + ", startTime: " + startTime + ", endTime: " + endTime
+				+ ", patient: " + patient + ", doctor: " + doctor;
 	}
-
-	public Doctor getDoctor() {
-		return this.doctor;
-	}
-
-	public void setDoctor(Doctor d) {
-		this.doctor = d;
-	}
-
 }
