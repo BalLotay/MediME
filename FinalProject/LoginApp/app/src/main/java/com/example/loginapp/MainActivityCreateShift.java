@@ -157,6 +157,8 @@ public class MainActivityCreateShift extends AppCompatActivity {
 
                 } else {
                     // Handle case where not all input data is selected.
+                    Toast.makeText(MainActivityCreateShift.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });

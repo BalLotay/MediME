@@ -24,6 +24,7 @@ Additionally, do take note of the following:
   + Username: admin
   + Password: admin
 - Be sure to sync the project with `build.gradle.kts` Gradle file under the FinalProject/LoginApp directory **only**.
+- When registering as a doctor, the specialties should be comma separated (e.g. "Heart,Brain")
 
 ### Database
 

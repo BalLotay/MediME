@@ -1,6 +1,8 @@
 package com.example.loginapp;
 import androidx.annotation.NonNull;
 
+import com.google.firebase.database.Exclude;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -66,6 +68,7 @@ public class Appointment {
 		this.date = d;
 	}
 
+	@Exclude
 	public boolean isPastAppointment(){
 
 		if (date == null || startTime == null) {
