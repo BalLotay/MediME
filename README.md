@@ -30,7 +30,7 @@ Additionally, do take note of the following:
 
 The app is able to store data on a Firebase database, as seen in the screenshot below:
 
-![Screenshot of the database in Firebase](Images/Firebase.png)
+![Screenshot of the database in Firebase](Images/Firebase_Screenshot.png)
 
 ### SVG credits:
 
