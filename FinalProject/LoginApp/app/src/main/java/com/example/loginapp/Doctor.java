@@ -11,6 +11,7 @@ public class Doctor extends Person {
     private boolean autoAcceptStatus;
     private List<Appointment> appointments;
     private List<Shift> shifts;
+    private List<Integer> ratings;
 
     public Doctor() {
 
@@ -24,10 +25,23 @@ public class Doctor extends Person {
         this.appointments = new ArrayList<>();
         this.shifts = new ArrayList<>();
         this.autoAcceptStatus = false;
+        this.ratings = new ArrayList<>();
 
         // Dummy appointment and shift to act as placeholder for Realtime Database
         shifts.add(new Shift("null","null","null",firstName));
         appointments.add(new Appointment("null", "null", "null", "null", "null"));
+    }
+
+    public int getAverageRating(){
+        int average = 0;
+        for(int i = 0; i < ratings.size(); i++){
+            average = average + ratings.get(i);
+        }
+        return average;
+    }
+
+    public void setRating(int rating){
+        ratings.add(rating);
     }
 
     public List<Appointment> getAppointments(){
