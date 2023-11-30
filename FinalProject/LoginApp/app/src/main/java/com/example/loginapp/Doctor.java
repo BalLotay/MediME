@@ -39,6 +39,7 @@ public class Doctor extends Person {
         for(int i = 0; i < ratings.size(); i++){
             average = average + ratings.get(i);
         }
+        average = average/ratings.size();
         return average;
     }
 
