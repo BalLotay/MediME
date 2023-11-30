@@ -43,7 +43,7 @@ public class Doctor extends Person {
         return average;
     }
 
-    public void setRating(int rating){
+    public void addRating(int rating){
         ratings.add(rating);
     }
 
