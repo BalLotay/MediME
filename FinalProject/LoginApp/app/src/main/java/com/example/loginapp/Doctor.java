@@ -26,10 +26,12 @@ public class Doctor extends Person {
         this.shifts = new ArrayList<>();
         this.autoAcceptStatus = false;
         this.ratings = new ArrayList<>();
+        
 
         // Dummy appointment and shift to act as placeholder for Realtime Database
         shifts.add(new Shift("null","null","null",firstName));
         appointments.add(new Appointment("null", "null", "null", "null", "null"));
+        ratings.add(0);
     }
 
     public int getAverageRating(){
