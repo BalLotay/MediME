@@ -1,4 +1,6 @@
 package com.example.loginapp;
+import com.google.firebase.database.Exclude;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +13,7 @@ public class Doctor extends Person {
     private boolean autoAcceptStatus;
     private List<Appointment> appointments;
     private List<Shift> shifts;
+    private List<Integer> ratings;
 
     public Doctor() {
 
@@ -24,10 +27,37 @@ public class Doctor extends Person {
         this.appointments = new ArrayList<>();
         this.shifts = new ArrayList<>();
         this.autoAcceptStatus = false;
+        this.ratings = new ArrayList<>();
 
         // Dummy appointment and shift to act as placeholder for Realtime Database
+        ratings.add(0);
         shifts.add(new Shift("null","null","null",firstName));
         appointments.add(new Appointment("null", "null", "null", "null", "null"));
+    }
+
+    public List<Integer> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Integer> ratings) {
+        this.ratings = ratings;
+    }
+
+    @Exclude
+    public int getAverageRating(){
+        if(ratings.size() == 1) {
+            return 0;
+        }
+        int average = 0;
+        for(int i = 0; i < ratings.size(); i++){
+            average = average + ratings.get(i);
+        }
+        return average/(ratings.size() - 1);
+    }
+
+    @Exclude
+    public void setRating(int rating){
+        ratings.add(rating);
     }
 
     public List<Appointment> getAppointments(){
