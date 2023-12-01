@@ -3,6 +3,9 @@ package com.example.loginapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
@@ -26,6 +29,9 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         MaterialButton viewUpcomingAppointmentsButton = findViewById(R.id.viewUpcomingAppointmentsButton);
         MaterialButton viewShiftsButton = findViewById(R.id.viewShiftsButton);
 
+        LinearLayout viewPastAppointmentsLayout = findViewById(R.id.viewPastAppointmentsLayout);
+        LinearLayout viewUpcomingAppointmentsLayout = findViewById(R.id.viewUpcomingAppointmentsLayout);
+
         MaterialButton addAppointmentButton = findViewById(R.id.addAppointmentButton);
 
         String[] personDetails = getIntent().getStringArrayExtra("person details");
@@ -46,6 +52,20 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
             viewShiftsButton.setVisibility(View.VISIBLE);
         } else {
             addAppointmentButton.setVisibility(View.VISIBLE);
+
+            ViewGroup.MarginLayoutParams vlpUpcoming = (ViewGroup.MarginLayoutParams) viewUpcomingAppointmentsLayout.getLayoutParams();
+            ViewGroup.MarginLayoutParams vlpPast = (ViewGroup.MarginLayoutParams) viewPastAppointmentsLayout.getLayoutParams();
+
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+            );
+
+            vlpUpcoming.bottomMargin -= 135;
+            vlpPast.bottomMargin -= 135;
+
+            viewUpcomingAppointmentsButton.setVisibility(View.VISIBLE);
+            viewPastAppointmentsButton.setVisibility(View.VISIBLE);
         }
 
         viewApplicantsButton.setOnClickListener(new View.OnClickListener() {
@@ -67,18 +87,34 @@ public class MainActivitySuccessfulLogin extends AppCompatActivity {
         viewUpcomingAppointmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewUpcomingAppointments.class);
-                intent.putExtra("doctorUsername", username);
-                startActivity(intent);
+
+                if (personType.equals("Doctor")) {
+                    Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewUpcomingAppointments.class);
+                    intent.putExtra("doctorUsername", username);
+                    startActivity(intent);
+                } else if (personType.equals("Patient")) {
+                    Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityPatientViewUpcomingAppointments.class);
+                    intent.putExtra("patientUsername", username);
+                    startActivity(intent);
+                }
+
             }
         });
 
         viewPastAppointmentsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewPastAppointments.class);
-                intent.putExtra("doctorUsername", username);
-                startActivity(intent);
+
+                if (personType.equals("Doctor")) {
+                    Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityDoctorViewPastAppointments.class);
+                    intent.putExtra("doctorUsername", username);
+                    startActivity(intent);
+                } else if (personType.equals("Patient")) {
+                    Intent intent = new Intent(MainActivitySuccessfulLogin.this, MainActivityPatientViewPastAppointments.class);
+                    intent.putExtra("patientUsername", username);
+                    startActivity(intent);
+                }
+
             }
         });
 

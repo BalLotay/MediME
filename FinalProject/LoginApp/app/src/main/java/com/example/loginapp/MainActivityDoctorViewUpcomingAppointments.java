@@ -112,7 +112,7 @@ public class MainActivityDoctorViewUpcomingAppointments extends AppCompatActivit
                                 @Override
                                 public void onClick(View view) {
                                     Intent intent = new Intent(MainActivityDoctorViewUpcomingAppointments.this, MainActivitySeeUserInfo.class);
-                                    String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, healthCardNumber, null, "viewPendingAppointments"};
+                                    String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, healthCardNumber, null, "doctorViewUpcomingAppointments"};
                                     intent.putExtra("person details", personDetails);
                                     startActivity(intent);
                                 }

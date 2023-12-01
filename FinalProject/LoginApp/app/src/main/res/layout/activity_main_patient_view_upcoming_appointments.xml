@@ -4,6 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityPatientViewUpcomingAppointments">
+    tools:context=".MainActivityPatientViewUpcomingAppointments"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/appointmentsTextView"
+        android:layout_width="397dp"
+        android:layout_height="68dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="Upcoming Appointments"
+        android:textColor="@color/offwhite"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollViewAppointments"
+        android:layout_width="409dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="140dp"
+
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appointmentsTextView"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/layoutInScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="90dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:text="Click on name for more info"
+                android:textColor="@color/white"
+                android:textSize="20sp">
+            </TextView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
