@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
@@ -58,7 +59,7 @@ public class MainActivityPatientViewUpcomingAppointments extends AppCompatActivi
 
         LinearLayout layoutScrollView = findViewById(R.id.layoutInScrollView);
 
-        String doctorUsername = getIntent().getStringExtra("doctorUsername");
+        String patientUsername = getIntent().getStringExtra("patientUsername");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference("Users");
@@ -69,25 +70,26 @@ public class MainActivityPatientViewUpcomingAppointments extends AppCompatActivi
                 if (snapshot.exists()) {
                     layoutScrollView.removeAllViews();
 
-                    List<Appointment> doctorAppointments;
+                    List<Appointment> patientAppointments;
 
                     GenericTypeIndicator<List<Appointment>> temp = new GenericTypeIndicator<List<Appointment>>(){};
-                    doctorAppointments = snapshot.child(doctorUsername).child("appointments").getValue(temp);
+                    patientAppointments = snapshot.child(patientUsername).child("appointments").getValue(temp);
 
-                    for (int i = 1; i < doctorAppointments.size(); i++) {   // First appointment (at index 0) is a dummy
-                        Appointment appointment = doctorAppointments.get(i);
-                        Log.d("doctorAppointments", appointment.toString());
+                    for (int i = 1; i < patientAppointments.size(); i++) {   // First appointment (at index 0) is a dummy
+                        Appointment appointment = patientAppointments.get(i);
+                        Log.d("patientAppointments", appointment.toString());
 
                         String appointmentStatus = appointment.getStatus();
 
-                        String firstName = appointment.getPatient();
-                        Log.d("doctorAppointments", firstName);
+                        String firstName = appointment.getDoctor();
+                        Log.d("patientAppointments", firstName);
 
                         String lastName = snapshot.child(firstName).child("lastName").getValue().toString();
                         String emailAddress = snapshot.child(firstName).child("emailAddress").getValue().toString();
                         String address = snapshot.child(firstName).child("address").getValue().toString();
+                        String specialties = snapshot.child(firstName).child("specialties").getValue().toString();
                         String phoneNumber = snapshot.child(firstName).child("phoneNumber").getValue().toString();
-                        String healthCardNumber = snapshot.child(firstName).child("healthCardNumber").getValue().toString();
+                        String employeeNumber = snapshot.child(firstName).child("employeeNumber").getValue().toString();
 
                         String firstAndLastName = firstName + " " + lastName;
 
@@ -112,7 +114,7 @@ public class MainActivityPatientViewUpcomingAppointments extends AppCompatActivi
                                 @Override
                                 public void onClick(View view) {
                                     Intent intent = new Intent(MainActivityPatientViewUpcomingAppointments.this, MainActivitySeeUserInfo.class);
-                                    String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, healthCardNumber, null, "viewPendingAppointments"};
+                                    String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, employeeNumber, specialties, "patientViewUpcomingAppointments"};
                                     intent.putExtra("person details", personDetails);
                                     startActivity(intent);
                                 }
@@ -122,9 +124,9 @@ public class MainActivityPatientViewUpcomingAppointments extends AppCompatActivi
                                 @Override
                                 public void onClick(View view) {
                                     appointment.setStatus("approved");
-                                    doctorAppointments.remove(appointment);
-                                    doctorAppointments.add(appointment);
-                                    userRef.child(doctorUsername).child("appointments").setValue(doctorAppointments);
+                                    patientAppointments.remove(appointment);
+                                    patientAppointments.add(appointment);
+                                    userRef.child(patientUsername).child("appointments").setValue(patientAppointments);
 
                                     List<Appointment> patientAppointments = snapshot.child(firstName).child("appointments").getValue(temp);
                                     patientAppointments.remove(patientAppointments.size()-1);
@@ -140,9 +142,9 @@ public class MainActivityPatientViewUpcomingAppointments extends AppCompatActivi
                                     layoutScrollView.removeView(layout);
 
                                     appointment.setStatus("rejected");
-                                    doctorAppointments.remove(appointment);
-                                    doctorAppointments.add(appointment);
-                                    userRef.child(doctorUsername).child("appointments").setValue(doctorAppointments);
+                                    patientAppointments.remove(appointment);
+                                    patientAppointments.add(appointment);
+                                    userRef.child(patientUsername).child("appointments").setValue(patientAppointments);
 
                                     List<Appointment> patientAppointments = snapshot.child(firstName).child("appointments").getValue(temp);
                                     patientAppointments.remove(appointment);
@@ -169,7 +171,7 @@ public class MainActivityPatientViewUpcomingAppointments extends AppCompatActivi
                                 @Override
                                 public void onClick(View view) {
                                     Intent intent = new Intent(MainActivityPatientViewUpcomingAppointments.this, MainActivitySeeUserInfo.class);
-                                    String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, healthCardNumber, null, "viewPendingAppointments"};
+                                    String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, employeeNumber, specialties, "patientViewUpcomingAppointments"};
                                     intent.putExtra("person details", personDetails);
                                     startActivity(intent);
                                 }
@@ -178,17 +180,21 @@ public class MainActivityPatientViewUpcomingAppointments extends AppCompatActivi
                             cancelButton.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    appointment.setStatus("cancelled");
-                                    doctorAppointments.remove(appointment);
-                                    doctorAppointments.add(appointment);
-                                    userRef.child(doctorUsername).child("appointments").setValue(doctorAppointments);
+                                    if (appointment.isCancellableAppointment()) {
+                                        appointment.setStatus("cancelled");
+                                        patientAppointments.remove(appointment);
+                                        patientAppointments.add(appointment);
+                                        userRef.child(patientUsername).child("appointments").setValue(patientAppointments);
 
-                                    List<Appointment> patientAppointments = snapshot.child(firstName).child("appointments").getValue(temp);
-                                    patientAppointments.remove(patientAppointments.size()-1);
-                                    patientAppointments.add(appointment);
-                                    userRef.child(firstName).child("appointments").setValue(patientAppointments);
+                                        List<Appointment> patientAppointments = snapshot.child(firstName).child("appointments").getValue(temp);
+                                        patientAppointments.remove(patientAppointments.size()-1);
+                                        patientAppointments.add(appointment);
+                                        userRef.child(firstName).child("appointments").setValue(patientAppointments);
 
-                                    layoutScrollView.removeView(layout);
+                                        layoutScrollView.removeView(layout);
+                                    } else {
+                                        Toast.makeText(MainActivityPatientViewUpcomingAppointments.this, "Cannot cancel appointment 1hr before", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             });
                         }
