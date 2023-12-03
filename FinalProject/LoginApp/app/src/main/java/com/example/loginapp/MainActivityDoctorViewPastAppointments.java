@@ -94,7 +94,7 @@ public class MainActivityDoctorViewPastAppointments extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     Intent intent = new Intent(MainActivityDoctorViewPastAppointments.this, MainActivitySeeUserInfo.class);
-                                    String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, healthCardNumber, null, "viewPendingAppointments"};
+                                    String[] personDetails = {firstName, lastName, emailAddress, phoneNumber, address, healthCardNumber, null, "doctorViewAppointments"};
                                     intent.putExtra("person details", personDetails);
                                     startActivity(intent);
                                 }

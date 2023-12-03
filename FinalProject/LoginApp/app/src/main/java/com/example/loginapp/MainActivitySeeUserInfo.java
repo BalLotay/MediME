@@ -99,7 +99,8 @@ public class MainActivitySeeUserInfo extends AppCompatActivity {
             if (actionToPerform != null) {
 
                 // See patient details as doctor
-                if (actionToPerform.equals("doctorViewUpcomingAppointments")) {
+                Log.d("actiontoperform", actionToPerform);
+                if (actionToPerform.equals("doctorViewAppointments")) {
                     userTextView.setText("Patient Details");
                 }
 
