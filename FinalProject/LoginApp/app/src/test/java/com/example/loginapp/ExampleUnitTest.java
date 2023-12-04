@@ -27,4 +27,24 @@ public class ExampleUnitTest {
            
     }
 
+    	public void testPatientGetAppointment(){
+		 Patient patient = new Patient("Dan", "L", "rewr", "asd", "asd", "asd", 3, "asd");
+	        Appointment ap1 = new Appointment("Dan", "Dan", "Dan", "Dan", "Dan");
+	        Appointment ap2 = new Appointment("das", "Dan", "Dan", "Dan", "Dan");
+	        
+	        patient.addAppointment(ap1);
+	        patient.addAppointment(ap2);
+	        Appointment received = patient.getAppointment(2);
+	        
+	        if(received.equals(ap2)) {
+	        	System.out.println("true");
+	        }
+	        else {
+	        	System.out.println("false");
+	        }
+	        
+	        
+	       
+	    }
+
 }
