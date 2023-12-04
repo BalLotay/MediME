@@ -37,10 +37,10 @@ public class ExampleUnitTest {
 	        Appointment received = patient.getAppointment(2);
 	        
 	        if(received.equals(ap2)) {
-	        	System.out.println("true");
+	        	System.out.println("passed");
 	        }
 	        else {
-	        	System.out.println("false");
+	        	System.out.println("failed");
 	        }
 	        
 	        
