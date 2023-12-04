@@ -9,14 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 
 
 import com.google.firebase.database.DataSnapshot;
@@ -58,7 +51,7 @@ public class MainActivityCreateShift extends AppCompatActivity {
         setContentView(R.layout.activity_main_create_shift);
 
         selectDateButton = findViewById(R.id.select);
-        selectStartTimeButton = findViewById(R.id.start);
+        selectStartTimeButton = findViewById(R.id.specialty);
         selectEndTimeButton = findViewById(R.id.end);
         confirmButton = findViewById(R.id.confirm);
 

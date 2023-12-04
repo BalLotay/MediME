@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,8 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
     private Button selectStartTimeButton;
     private Button selectEndTimeButton;
 
+
+
     private Button confirmButton;
     private EditText doctorEditText;
 
@@ -37,6 +40,8 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
     private Calendar selectedStartTime;
     private Calendar selectedEndTime;
     private Button addAppointment;
+
+    private EditText selectSpecialty;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference userRef = database.getReference("Users");
@@ -50,10 +55,14 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
         setContentView(R.layout.activity_main_patient_add_appointment);
 
         selectDateButton = findViewById(R.id.select);
-        selectStartTimeButton = findViewById(R.id.start);
-        selectEndTimeButton = findViewById(R.id.end);
+        //selectStartTimeButton = findViewById(R.id.specialty);
+        //selectEndTimeButton = findViewById(R.id.end);
 
-        doctorEditText = findViewById(R.id.doctor);
+
+        selectSpecialty = findViewById(R.id.special);
+
+
+
         addAppointment = findViewById(R.id.addAppointment);
         String username = getIntent().getStringExtra("Username");
 
@@ -64,29 +73,26 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
             }
         });
 
-        selectStartTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimePickerDialog(true);
-            }
-        });
 
-        selectEndTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimePickerDialog(false);
-            }
-        });
 
         addAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String doctorUsername = doctorEditText.getText().toString();
 
+                String docSpec = selectSpecialty.getText().toString();
+
+                Intent intent = new Intent(MainActivityPatientAddAppointment.this, MainActivitySuccessfulLogin.class);
+                intent.putExtra("specialty", docSpec);
+                intent.putExtra("date", date);
+                intent.putExtra("user", username);
+                startActivity(intent);
+                finish();
                 userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+
+                        /*
                         // Create and handle the appointment object using the selectedDate, selectedStartTime, and selectedEndTime
                         if (selectedDate != null && selectedStartTime != null && selectedEndTime != null && !doctorUsername.equals("")) {
                             int startHour = 100 * selectedStartTime.get(Calendar.HOUR_OF_DAY);
@@ -121,7 +127,7 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
                             Toast.makeText(MainActivityPatientAddAppointment.this, "Please enter all fields", Toast.LENGTH_SHORT).show();
                         }
 
-
+                    */
                     }
 
                     @Override

@@ -13,6 +13,9 @@
         android:theme="@style/Base.Theme.LoginApp"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivityListAppointments"
+            android:exported="false" />
+        <activity
             android:name=".MainActivityPatientViewPastAppointments"
             android:exported="false" />
         <activity
