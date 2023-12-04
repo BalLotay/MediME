@@ -27,6 +27,19 @@ public class ExampleUnitTest {
            
     }
 
+	public void testShiftConflictsWith(){
+		Shift s1 = new Shift("10/11/2023", "2300","2330","Harmon");
+		Shift s2 = new Shift("10/11/2023", "2300","2330","Harmon");
+		boolean result = s1.conflictsWith(s2);
+		
+		if(result == true) {
+			System.out.println("Passed");
+		}
+		else{
+			System.out.println("Failed");
+		}
+	}
+
     	public void testPatientGetAppointment(){
 		 Patient patient = new Patient("Dan", "L", "rewr", "asd", "asd", "asd", 3, "asd");
 	        Appointment ap1 = new Appointment("Dan", "Dan", "Dan", "Dan", "Dan");
@@ -37,10 +50,10 @@ public class ExampleUnitTest {
 	        Appointment received = patient.getAppointment(2);
 	        
 	        if(received.equals(ap2)) {
-	        	System.out.println("passed");
+	        	System.out.println("Passed");
 	        }
 	        else {
-	        	System.out.println("failed");
+	        	System.out.println("Failed");
 	        }
 	        
 	        
