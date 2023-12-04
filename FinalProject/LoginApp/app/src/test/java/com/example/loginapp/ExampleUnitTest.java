@@ -17,7 +17,7 @@ public class ExampleUnitTest {
 
     public void testAverageRating(){
         
-        Doctor doctor = new Doctor("Dan", "Li", "email", "as", "333333", "rew", 243, "declined", "cardio")
+        Doctor doctor = new Doctor("Dan", "Li", "email", "as", "333333", "rew", 243, "declined", "cardio");
         int precalculatedRating = 3;
         doctor.setRating(2);
         doctor.setRating(4);
