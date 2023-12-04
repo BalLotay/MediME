@@ -93,18 +93,29 @@ public class MainActivitySeeUserInfo extends AppCompatActivity {
 
         }
 
-            // See patient details as doctor
+
             String actionToPerform = personDetails[7];
 
-            if (actionToPerform != null && actionToPerform.equals("doctorViewUpcomingAppointments")) {
-                userTextView.setText("Patient Details");
+            if (actionToPerform != null) {
+
+                // See patient details as doctor
+                Log.d("actiontoperform", actionToPerform);
+                if (actionToPerform.equals("doctorViewAppointments")) {
+                    userTextView.setText("Patient Details");
+                }
+
+                // See doctor details as patient
+                if (actionToPerform.equals("patientViewPastAppointments")) {
+                    userTextView.setText("Doctor Details");
+                    ratingLayout.setVisibility(View.VISIBLE);
+                }
+
+                if (actionToPerform.equals("patientViewUpcomingAppointments")) {
+                    userTextView.setText("Doctor Details");
+                }
             }
 
-            // See doctor details as patient
-            if (actionToPerform != null && actionToPerform.equals("patientViewPastAppointments")) {
-                userTextView.setText("Doctor Details");
-                ratingLayout.setVisibility(View.VISIBLE);
-            }
+
 
     }
 }
