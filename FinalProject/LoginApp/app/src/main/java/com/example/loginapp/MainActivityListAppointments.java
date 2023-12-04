@@ -100,7 +100,7 @@ public class MainActivityListAppointments extends AppCompatActivity {
 
                         Calendar currentTime = (Calendar) startTime.clone();
 
-                        // Print appointments at 30-minute intervals
+                        // Get appointments at 30-minute intervals
                         while (currentTime.before(endTime)) {
                             Calendar nextTime = (Calendar) currentTime.clone();
                             nextTime.add(Calendar.MINUTE, 30);
@@ -111,45 +111,59 @@ public class MainActivityListAppointments extends AppCompatActivity {
                             String endView = outputFormat.format(nextTime.getTime());
                             String dateView = date;
                             String docView = shift.getDoctor();
+                            boolean flag = true;
 
-                            //insert layoutview here
-                            LinearLayout layout = new LinearLayout(MainActivityListAppointments.this,null,0, R.style.ApplicantLinearLayout);
-                            layout.setLayoutParams(paramsLinearLayout);
-                            TextView textView = new TextView(MainActivityListAppointments.this,null,0,R.style.ApplicantNameView);
-                            MaterialButton addButton = new MaterialButton(MainActivityListAppointments.this, null);
-                            addButton.setText("Add");
-                            textView.setLayoutParams(paramsTextView);
-                            layout.setPadding(5,5,50,5);
-                            textView.setText(startView + "-"+ endView+ "| Doc: "+docView);
-                            layout.addView(textView);
-                            layout.addView(addButton);
-                            layoutScrollView.addView(layout);
-
-
-                            addButton.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    String username = getIntent().getStringExtra("user");
-                                    GenericTypeIndicator<List<Appointment>> temp = new GenericTypeIndicator<List<Appointment>>(){};
-                                    List<Appointment>patientAppointments = dataSnapshot.child(username).child("appointments").getValue(temp);
-                                    List<Appointment>doctorAppointments = dataSnapshot.child(docView).child("appointments").getValue(temp);
-
-                                    Appointment newAppointment = new Appointment(username, docView, date, startView, endView);
-
-                                    boolean autoAcceptStatus = (boolean) dataSnapshot.child(docView).child("autoAcceptStatus").getValue();
-                                    if (autoAcceptStatus) {
-                                        newAppointment.setStatus("approved");
-                                        Toast.makeText(MainActivityListAppointments.this, "Appointment accepted!", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(MainActivityListAppointments.this, "Appointment request sent", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                    doctorAppointments.add(newAppointment);
-                                    patientAppointments.add(newAppointment);
-                                    userRef.child(username).child("appointments").setValue(patientAppointments);
-                                    userRef.child(docView).child("appointments").setValue(doctorAppointments);
+                            //CHECK IF VALID
+                            //for appointments in docusername.
+                            GenericTypeIndicator<List<Appointment>> tempo = new GenericTypeIndicator<List<Appointment>>(){};
+                            List<Appointment>docAppointmentList = dataSnapshot.child(docView).child("appointments").getValue(tempo);
+                            //if appointment.date = date and appointmnet.starttime = startview -> continue
+                            for (Appointment app : docAppointmentList){
+                                if (app.getDate().equals(date) && app.startTime.equals(startView)){
+                                    flag = false;
                                 }
-                            });
+                            }
+                            if (flag){
+                                //insert layoutview here
+                                LinearLayout layout = new LinearLayout(MainActivityListAppointments.this,null,0, R.style.ApplicantLinearLayout);
+                                layout.setLayoutParams(paramsLinearLayout);
+                                TextView textView = new TextView(MainActivityListAppointments.this,null,0,R.style.ApplicantNameView);
+                                MaterialButton addButton = new MaterialButton(MainActivityListAppointments.this, null);
+                                addButton.setText("Add");
+                                textView.setLayoutParams(paramsTextView);
+                                layout.setPadding(5,5,50,5);
+                                textView.setText(startView + "-"+ endView+ "| Doc: "+docView);
+                                layout.addView(textView);
+                                layout.addView(addButton);
+                                layoutScrollView.addView(layout);
+
+
+                                addButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        String username = getIntent().getStringExtra("user");
+                                        GenericTypeIndicator<List<Appointment>> temp = new GenericTypeIndicator<List<Appointment>>(){};
+                                        List<Appointment>patientAppointments = dataSnapshot.child(username).child("appointments").getValue(temp);
+                                        List<Appointment>doctorAppointments = dataSnapshot.child(docView).child("appointments").getValue(temp);
+
+                                        Appointment newAppointment = new Appointment(username, docView, date, startView, endView);
+
+                                        boolean autoAcceptStatus = (boolean) dataSnapshot.child(docView).child("autoAcceptStatus").getValue();
+                                        if (autoAcceptStatus) {
+                                            newAppointment.setStatus("approved");
+                                            Toast.makeText(MainActivityListAppointments.this, "Appointment accepted!", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(MainActivityListAppointments.this, "Appointment request sent", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        doctorAppointments.add(newAppointment);
+                                        patientAppointments.add(newAppointment);
+                                        userRef.child(username).child("appointments").setValue(patientAppointments);
+                                        userRef.child(docView).child("appointments").setValue(doctorAppointments);
+                                    }
+                                });
+                            }
+                            //continue loop
                             currentTime = nextTime;
                         }
                     } catch (ParseException e) {
