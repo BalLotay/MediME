@@ -18,24 +18,13 @@ public class ExampleUnitTest {
     public void testAverageRating(){
         
         Doctor doctor = new Doctor("Dan", "Li", "email", "as", "333333", "rew", 243, "declined", "cardio")
-        int precalculatedrating = 3;
+        int precalculatedRating = 3;
         doctor.setRating(2);
         doctor.setRating(4);
         doctor.setRating(3);
         int rating = doctor.getAverageRating();
-        assertEquals(precalculatedrating, rating);
+        assertEquals(precalculatedRating, rating);
            
     }
 
-        public void testAverageRating(){
-        
-        Doctor doctor = new Doctor("Dan", "Li", "email", "as", "333333", "rew", 243, "declined", "cardio")
-        int precalculatedrating = 3;
-        doctor.setRating(2);
-        doctor.setRating(4);
-        doctor.setRating(3);
-        int rating = doctor.getAverageRating();
-        assertEquals(precalculatedrating, rating);
-           
-    }
 }
