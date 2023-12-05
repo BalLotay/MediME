@@ -81,15 +81,15 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
 
                 String docSpec = selectSpecialty.getText().toString();
 
-                Intent intent = new Intent(MainActivityPatientAddAppointment.this, MainActivitySuccessfulLogin.class);
+                Intent intent = new Intent(MainActivityPatientAddAppointment.this, MainActivityListAppointments.class);
                 intent.putExtra("specialty", docSpec);
                 intent.putExtra("date", date);
                 intent.putExtra("user", username);
                 startActivity(intent);
                 finish();
-                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
                         /*
@@ -128,13 +128,13 @@ public class MainActivityPatientAddAppointment extends AppCompatActivity {
                         }
 
                     */
-                    }
+//                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
             }
         });
     }

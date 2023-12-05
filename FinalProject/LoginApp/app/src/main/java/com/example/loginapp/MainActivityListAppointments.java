@@ -65,29 +65,34 @@ public class MainActivityListAppointments extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     if (snapshot.child("userType").getValue(String.class).equals("Doctor")) {
+                        String specialties = snapshot.child("specialties").getValue().toString();
+                        Log.d("specialties", specialties);
+                        specialties = specialties.replace("[", "");
+                        specialties = specialties.replace("]", "");
+                        Log.d("specialties", specialties);
 
-                        GenericTypeIndicator<List<String>> temp = new GenericTypeIndicator<List<String>>() {
-                        };
-                        List<String> specialties = snapshot.child("specialties").getValue(temp);
 
                         // Check if the user has the input string in their specialties
-                        for (String specialty : specialties) {
-
+                        for (String specialty : specialties.split(", ")) {
+//                        for (String specialty : specialties) {
+                            Log.d("specialtyhmm", specialty + " " + snapshot.getKey().toString());
                             if (specialty.equals(search)) {
-                                GenericTypeIndicator<List<Shift>> listShift = new GenericTypeIndicator<List<Shift>>() {
-                                };
+
+                                GenericTypeIndicator<List<Shift>> listShift = new GenericTypeIndicator<List<Shift>>() {};
                                 List<Shift> allShifts = snapshot.child("shifts").getValue(listShift);
 
-                                for (Shift shift : allShifts){
-                                    if (shift.getDate().equals(date)){
-                                        shiftsToView.add(shift);
+                                if (!allShifts.isEmpty()) {
+                                    for (Shift shift : allShifts){
+                                        if (shift.getDate().equals(date)){
+                                            shiftsToView.add(shift);
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-                //now we have the list of shifts, view it
+                // now we have the list of shifts, view it
                 for (Shift shift : shiftsToView) {
                     SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
 
@@ -118,12 +123,12 @@ public class MainActivityListAppointments extends AppCompatActivity {
                             GenericTypeIndicator<List<Appointment>> tempo = new GenericTypeIndicator<List<Appointment>>(){};
                             List<Appointment>docAppointmentList = dataSnapshot.child(docView).child("appointments").getValue(tempo);
                             //if appointment.date = date and appointmnet.starttime = startview -> continue
-                            for (Appointment app : docAppointmentList){
+                            for (Appointment app : docAppointmentList) {
                                 if (app.getDate().equals(date) && app.startTime.equals(startView)){
                                     flag = false;
                                 }
                             }
-                            if (flag){
+                            if (flag) {
                                 //insert layoutview here
                                 LinearLayout layout = new LinearLayout(MainActivityListAppointments.this,null,0, R.style.ApplicantLinearLayout);
                                 layout.setLayoutParams(paramsLinearLayout);
