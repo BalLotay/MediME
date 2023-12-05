@@ -80,13 +80,16 @@ public class MainActivityListAppointments extends AppCompatActivity {
 
                                 GenericTypeIndicator<List<Shift>> listShift = new GenericTypeIndicator<List<Shift>>() {};
                                 List<Shift> allShifts = snapshot.child("shifts").getValue(listShift);
-
-                                if (!allShifts.isEmpty()) {
-                                    for (Shift shift : allShifts){
-                                        if (shift.getDate().equals(date)){
-                                            shiftsToView.add(shift);
+                                try {
+                                    if (!allShifts.isEmpty()) {
+                                        for (Shift shift : allShifts) {
+                                            if (shift.getDate().equals(date)) {
+                                                shiftsToView.add(shift);
+                                            }
                                         }
                                     }
+                                }catch (Exception e){
+                                    //do nothing
                                 }
                             }
                         }
