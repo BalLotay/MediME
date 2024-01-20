@@ -26,11 +26,22 @@ Additionally, do take note of the following:
 - Be sure to sync the project with `build.gradle.kts` Gradle file under the FinalProject/LoginApp directory **only**.
 - When registering as a doctor, the specialties should be comma separated (e.g. "Heart,Brain")
 
+## Screenshots
+
+![Screenshot of the Login page](Images/App%20Screenshots/Login.png)
+![Screenshot of the Succesful Login page](Images/App%20Screenshots/Successful%20Login_Admin.png)
+![Screenshot of the Patient Register page](Images/App%20Screenshots/Patient%20Register.png)
+![Screenshot of the Date Picker page](Images/App%20Screenshots/Date%20Picker_Add%20Shift_Doctor.png)
+![Screenshot of the See Potential Appointments page](Images/App%20Screenshots/See%20Potential%20Appointments_new.png)
+![Screenshot of the See User Info page](Images/App%20Screenshots/See%20User%20Info_Admin.png)
+![Screenshot of the See Doctor Info page](Images/App%20Screenshots/View%20Doctor%20Info_Rate%20Doctor.png)
+
 ### Database
 
 The app is able to store data on a Firebase database, as seen in the screenshot below:
 
 ![Screenshot of the database in Firebase](Images/Firebase_Screenshot.png)
+
 
 ### SVG credits:
 
