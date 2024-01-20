@@ -33,7 +33,6 @@ Additionally, do take note of the following:
 ![Screenshot of the Patient Register page](Images/App%20Screenshots/Patient%20Register.png)
 ![Screenshot of the Date Picker page](Images/App%20Screenshots/Date%20Picker_Add%20Shift_Doctor.png)
 ![Screenshot of the See Potential Appointments page](Images/App%20Screenshots/See%20Potential%20Appointments_new.png)
-![Screenshot of the See User Info page](Images/App%20Screenshots/See%20User%20Info_Admin.png)
 ![Screenshot of the See Doctor Info page](Images/App%20Screenshots/View%20Doctor%20Info_Rate%20Doctor.png)
 
 ### Database
